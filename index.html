@@ -1,344 +1,296 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Wedding of Rohan & Priya</title>
+    <title>An Indian Wedding Invitation</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;700&family=Tiro+Devanagari+Sanskrit&display=swap" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <style>
         body {
-            font-family: 'Poppins', sans-serif;
-            background-color: #0a0a0a;
-            color: #e0e0e0;
-            overflow-x: hidden;
-        }
-        .font-cormorant {
             font-family: 'Cormorant Garamond', serif;
+            background-color: #2a0000;
+            color: #f0e6d2;
         }
-        .gold-text {
-            color: #d4af37;
+        .devanagari {
+            font-family: 'Tiro Devanagari Sanskrit', serif;
         }
-        .gold-border {
-            border-color: #d4af37;
-        }
-        .bg-pattern {
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E%3Cg fill-rule='evenodd'%3E%3Cg fill='%23d4af37' fill-opacity='0.05'%3E%3Cpath d='M0 38.59l2.83-2.83 1.41 1.41L1.41 40H0v-1.41zM0 1.4l2.83 2.83 1.41-1.41L1.41 0H0v1.41zM38.59 40l-2.83-2.83 1.41-1.41L40 38.59V40h-1.41zM40 1.41l-2.83 2.83-1.41-1.41L38.59 0H40v1.41zM20 18.6l2.83-2.83 1.41 1.41L21.41 20l2.83 2.83-1.41 1.41L20 21.41l-2.83 2.83-1.41-1.41L18.59 20l-2.83-2.83 1.41-1.41L20 18.59z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-        }
-        /* For custom scrollbar */
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: #1a1a1a; }
-        ::-webkit-scrollbar-thumb { background: #d4af37; border-radius: 10px; }
-        ::-webkit-scrollbar-thumb:hover { background: #b89b31; }
+        .bg-maroon { background-color: #5d001e; }
+        .bg-saffron { background-color: #ff9933; }
+        .bg-emerald { background-color: #50c878; }
+        .text-gold { color: #d4af37; }
+        .border-gold { border-color: #d4af37; }
+        .bg-gold { background-color: #d4af37; }
 
-        /* Animation states */
-        .reveal-up {
-            opacity: 0;
-            transform: translateY(50px);
-            transition: opacity 1s, transform 1s;
+        /* Custom Patterns */
+        .paisley-pattern {
+            background-image: url("data:image/svg+xml,%3Csvg width='52' height='52' viewBox='0 0 52 52' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23d4af37' fill-opacity='0.1'%3E%3Cpath d='M10 10c0-2.21-1.79-4-4-4-3.314 0-6-2.686-6-6h2c0 2.21 1.79 4 4 4 3.314 0 6 2.686 6 6 0 2.21 1.79 4 4 4 3.314 0 6 2.686 6 6 0 2.21 1.79 4 4 4v2c-2.21 0-4-1.79-4-4 0-3.314-2.686-6-6-6s-6-2.686-6-6c0-2.21-1.79-4-4-4s-4 1.79-4 4v2c2.21 0 4 1.79 4 4zM30 30c0-2.21-1.79-4-4-4-3.314 0-6-2.686-6-6h2c0 2.21 1.79 4 4 4 3.314 0 6 2.686 6 6 0 2.21 1.79 4 4 4 3.314 0 6 2.686 6 6 0 2.21 1.79 4 4 4v2c-2.21 0-4-1.79-4-4 0-3.314-2.686-6-6-6s-6-2.686-6-6c0-2.21-1.79-4-4-4s-4 1.79-4 4v2c2.21 0 4 1.79 4 4zM50 50c0-2.21-1.79-4-4-4-3.314 0-6-2.686-6-6h2c0 2.21 1.79 4 4 4 3.314 0 6 2.686 6 6 0 2.21 1.79 4 4 4 3.314 0 6 2.686 6 6 0 2.21 1.79 4 4 4v2c-2.21 0-4-1.79-4-4 0-3.314-2.686-6-6-6s-6-2.686-6-6c0-2.21-1.79-4-4-4s-4 1.79-4 4v2c2.21 0 4 1.79 4 4z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
         }
-        
-        /* Modal styles */
-        .modal {
-            transition: opacity 0.3s ease, visibility 0.3s ease;
+
+        .card-3d {
+            transform-style: preserve-3d;
+            transition: transform 0.5s;
         }
-        .modal-content {
-            transition: transform 0.3s ease;
+        .card-3d:hover {
+            transform: rotateY(10deg) rotateX(5deg) scale(1.05);
+        }
+        .parallax-bg {
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
         }
     </style>
 </head>
-<body class="bg-pattern">
+<body class="bg-maroon paisley-pattern overflow-x-hidden">
 
-    <!-- Guest Name Modal -->
-    <div id="guestModal" class="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm p-4">
-        <div id="modalContent" class="bg-[#1a1a1a] border gold-border rounded-lg p-8 md:p-12 w-full max-w-md text-center transform scale-95 opacity-0">
-            <h2 class="font-cormorant text-3xl gold-text mb-4">An Invitation Awaits</h2>
-            <p class="mb-6 text-neutral-300">To personalize your experience, please share your name.</p>
-            <input type="text" id="guestNameInput" placeholder="Enter your full name" class="w-full bg-neutral-800 border border-neutral-600 rounded-md p-3 text-white focus:outline-none focus:ring-2 focus:ring-amber-400">
-            <button id="submitNameBtn" class="mt-6 w-full bg-[#d4af37] text-black font-bold py-3 px-6 rounded-md hover:bg-[#b89b31] transition duration-300">Enter</button>
-        </div>
+    <!-- Phase 1: Loader -->
+    <div id="loader" class="fixed inset-0 bg-maroon z-50 flex items-center justify-center">
+        <svg class="animate-spin h-24 w-24 text-gold" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+        </svg>
     </div>
 
-    <!-- Main Content -->
-    <main id="mainContent" class="opacity-0 transition-opacity duration-1000">
-        <!-- Hero Section -->
-        <header class="min-h-screen flex flex-col justify-center items-center text-center p-8 relative overflow-hidden">
-            <div id="mandala" class="absolute inset-0 z-0 opacity-10" style="background-image: url('https://www.svgrepo.com/show/25785/mandala.svg'); background-size: cover; background-position: center;"></div>
-            <div class="z-10">
-                <p class="reveal-up text-lg tracking-widest text-amber-200">Together with their families</p>
-                <h1 class="reveal-up font-cormorant text-6xl md:text-9xl my-4 gold-text" style="text-shadow: 0 0 20px #d4af3788;">Rohan & Priya</h1>
-                <p class="reveal-up text-lg text-neutral-300">Joyfully invite you, <span id="guestNameDisplay" class="font-bold gold-text">our esteemed guest</span>, to celebrate their union.</p>
-                <div id="countdown" class="reveal-up mt-8 text-2xl md:text-3xl font-light tracking-widest flex justify-center space-x-4">
-                    <div><span id="days">00</span><p class="text-xs">Days</p></div>
-                    <div>:</div>
-                    <div><span id="hours">00</span><p class="text-xs">Hours</p></div>
-                    <div>:</div>
-                    <div><span id="minutes">00</span><p class="text-xs">Minutes</p></div>
-                    <div>:</div>
-                    <div><span id="seconds">00</span><p class="text-xs">Seconds</p></div>
-                </div>
-            </div>
-            <div class="absolute bottom-10 text-amber-200 z-10 animate-bounce">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 13l-7 7-7-7m14-8l-7 7-7-7" />
-                </svg>
-            </div>
-        </header>
+    <!-- Phase 2: Unveiling -->
+    <div id="curtain" class="fixed inset-0 z-40 flex">
+        <div id="left-door" class="w-1/2 h-full bg-maroon border-r-2 border-gold flex items-center justify-end">
+             <div class="text-gold text-4xl font-bold -mr-8">R&S</div>
+        </div>
+        <div id="right-door" class="w-1/2 h-full bg-maroon border-l-2 border-gold flex items-center justify-start">
+        </div>
+        <button id="open-invitation" class="absolute bottom-10 left-1/2 -translate-x-1/2 bg-gold text-maroon px-6 py-3 rounded-full font-bold text-lg hover:bg-opacity-80 transition-all">
+            Open Invitation
+        </button>
+    </div>
 
-        <!-- Story Section -->
-        <section class="py-24 px-8 bg-[#111]">
-            <div class="max-w-5xl mx-auto text-center">
-                <h2 class="font-cormorant text-5xl gold-text mb-4 reveal-up">A Story Written in the Stars</h2>
-                <p class="text-neutral-300 max-w-2xl mx-auto reveal-up">Our journey has been a beautiful tapestry of moments, leading us to a shared forever.</p>
-                <div class="mt-16 grid grid-cols-1 md:grid-cols-3 gap-12 text-left">
-                    <div class="story-card p-6 border-l-2 gold-border">
-                        <h3 class="font-cormorant text-3xl text-amber-300 mb-2">Chapter I: Serendipity</h3>
-                        <p>A chance meeting, a shared smile. It was the spark that ignited our universe, a quiet beginning to a grand story under the Mumbai skyline.</p>
-                    </div>
-                    <div class="story-card p-6 border-l-2 gold-border">
-                        <h3 class="font-cormorant text-3xl text-amber-300 mb-2">Chapter II: The Journey</h3>
-                        <p>Countless conversations, shared dreams, and adventures across cities. Each moment a brushstroke, painting a future we both envisioned.</p>
-                    </div>
-                    <div class="story-card p-6 border-l-2 gold-border">
-                        <h3 class="font-cormorant text-3xl text-amber-300 mb-2">Chapter III: The Promise</h3>
-                        <p>On a quiet evening, with the blessings of our families, a promise was made. A commitment to weave our separate stories into one epic tale of love.</p>
-                    </div>
+    <main id="main-content" class="opacity-0">
+        <!-- Phase 3: Aamantran -->
+        <section id="aamantran" class="min-h-screen flex flex-col items-center justify-center text-center p-8">
+            <div class="devanagari text-2xl text-gold mb-2">|| श्री गणेशाय नमः ||</div>
+            <div class="text-sm text-gray-300 mb-8">|| Shree Ganeshay Namah ||</div>
+
+            <div class="my-12">
+                <div class="devanagari text-4xl text-gold leading-relaxed">वक्रतुण्ड महाकाय सूर्यकोटि समप्रभ।</div>
+                <div class="devanagari text-4xl text-gold leading-relaxed">निर्विघ्नं कुरु मे देव सर्वकार्येषु सर्वदा॥</div>
+            </div>
+
+            <div class="italic text-lg text-gray-300 my-4">
+                <p>Vakratunda Mahakaya Suryakoti Samaprabha.</p>
+                <p>Nirvighnam Kuru Me Deva Sarvakaryeshu Sarvada.</p>
+            </div>
+            <div class="text-lg my-4 max-w-2xl">
+                "O, Lord with a curved trunk and a mighty body, whose splendor is equal to a million suns, please make all my endeavors free of obstacles, always."
+            </div>
+
+            <div class="mt-12 text-xl space-y-6">
+                <p>With the divine blessings of Smt. & Shri. Ram and Sita Sharma</p>
+                <p>Smt. & Shri. Ashok and Meera Kumar<br>request the honour of your presence at the wedding ceremony of their beloved son</p>
+                <h1 class="text-5xl text-gold font-bold my-4">Raj</h1>
+                <p>with</p>
+                <h1 class="text-5xl text-gold font-bold my-4">Priya</h1>
+                <p>daughter of Smt. & Shri. Vijay and Sunita Patel</p>
+            </div>
+        </section>
+
+        <!-- Phase 4: Itinerary -->
+        <section id="utsav" class="py-20 bg-maroon bg-opacity-50">
+            <h2 class="text-5xl text-center text-gold font-bold mb-12">The Festivities</h2>
+            <div class="container mx-auto px-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
+                <!-- Haldi -->
+                <div class="card-3d bg-saffron bg-opacity-20 border border-gold p-6 rounded-lg text-center">
+                    <h3 class="text-3xl text-gold mb-2">Haldi</h3>
+                    <p class="text-lg">Monday, 20th Nov 2023</p>
+                    <p>10:00 AM onwards</p>
+                </div>
+                <!-- Mehendi -->
+                <div class="card-3d bg-emerald bg-opacity-20 border border-gold p-6 rounded-lg text-center">
+                    <h3 class="text-3xl text-gold mb-2">Mehendi</h3>
+                    <p class="text-lg">Monday, 20th Nov 2023</p>
+                    <p>06:00 PM onwards</p>
+                </div>
+                <!-- Sangeet -->
+                <div class="card-3d bg-blue-500 bg-opacity-20 border border-gold p-6 rounded-lg text-center">
+                     <h3 class="text-3xl text-gold mb-2">Sangeet</h3>
+                    <p class="text-lg">Tuesday, 21st Nov 2023</p>
+                    <p>07:00 PM onwards</p>
+                </div>
+                 <!-- Vivah -->
+                <div class="card-3d bg-red-500 bg-opacity-20 border border-gold p-6 rounded-lg text-center">
+                    <h3 class="text-3xl text-gold mb-2">Wedding</h3>
+                    <p class="text-lg">Wednesday, 22nd Nov 2023</p>
+                    <p>05:00 PM onwards</p>
+                </div>
+                <!-- Reception -->
+                <div class="card-3d bg-purple-500 bg-opacity-20 border border-gold p-6 rounded-lg text-center">
+                    <h3 class="text-3xl text-gold mb-2">Reception</h3>
+                    <p class="text-lg">Wednesday, 22nd Nov 2023</p>
+                    <p>08:00 PM onwards</p>
                 </div>
             </div>
         </section>
 
-        <!-- Events Section -->
-        <section class="py-24 px-8">
-            <div class="max-w-6xl mx-auto text-center">
-                <h2 class="font-cormorant text-5xl gold-text mb-4 reveal-up">The Grand Celebration</h2>
-                <p class="text-neutral-300 reveal-up">Join us in the festivities as we embark on our new journey.</p>
-                <div class="mt-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                    <!-- Sangeet Card -->
-                    <div class="event-card bg-[#1a1a1a] p-8 rounded-lg border gold-border text-center transform hover:scale-105 hover:-translate-y-2 transition-transform duration-300">
-                        <h3 class="font-cormorant text-3xl text-amber-300">Sangeet</h3>
-                        <p class="text-sm text-neutral-400 mt-1">A Symphony of Joy</p>
-                        <div class="my-4 border-t border-amber-800 w-1/4 mx-auto"></div>
-                        <p class="font-semibold">October 24, 2025</p>
-                        <p>7:00 PM Onwards</p>
-                        <p class="mt-2 text-xs">The Crystal Ballroom</p>
-                        <button class="rsvp-btn mt-6 bg-transparent border gold-border text-amber-300 py-2 px-6 rounded-md hover:bg-amber-300 hover:text-black transition" data-event="Sangeet">Will you attend?</button>
-                    </div>
-                    <!-- Wedding Card -->
-                    <div class="event-card bg-[#1a1a1a] p-8 rounded-lg border gold-border text-center transform hover:scale-105 hover:-translate-y-2 transition-transform duration-300">
-                        <h3 class="font-cormorant text-3xl text-red-400">Wedding</h3>
-                        <p class="text-sm text-neutral-400 mt-1">Two Souls, One Heart</p>
-                        <div class="my-4 border-t border-amber-800 w-1/4 mx-auto"></div>
-                        <p class="font-semibold">October 26, 2025</p>
-                        <p>10:30 AM Muhurtam</p>
-                        <p class="mt-2 text-xs">The Royal Garden Lawns</p>
-                        <button class="rsvp-btn mt-6 bg-transparent border gold-border text-amber-300 py-2 px-6 rounded-md hover:bg-amber-300 hover:text-black transition" data-event="Wedding Ceremony">Will you attend?</button>
-                    </div>
-                     <!-- Add to Calendar -->
-                     <div class="event-card bg-transparent p-8 rounded-lg border-2 border-dashed gold-border text-center flex flex-col justify-center items-center transform hover:scale-105 hover:-translate-y-2 transition-transform duration-300">
-                        <h3 class="font-cormorant text-2xl text-amber-300">Save The Date</h3>
-                         <p class="text-sm text-neutral-400 mt-1">Don't miss a moment</p>
-                        <a id="addToCalendar" href="" target="_blank" class="mt-6 bg-amber-300 text-black font-bold py-3 px-6 rounded-md hover:bg-amber-400 transition inline-block">Add to Calendar</a>
-                    </div>
-                    <!-- Reception Card -->
-                    <div class="event-card bg-[#1a1a1a] p-8 rounded-lg border gold-border text-center transform hover:scale-105 hover:-translate-y-2 transition-transform duration-300">
-                        <h3 class="font-cormorant text-3xl text-blue-400">Reception</h3>
-                        <p class="text-sm text-neutral-400 mt-1">A Feast of Love</p>
-                        <div class="my-4 border-t border-amber-800 w-1/4 mx-auto"></div>
-                        <p class="font-semibold">October 26, 2025</p>
-                        <p>7:30 PM Onwards</p>
-                        <p class="mt-2 text-xs">The Royal Garden Lawns</p>
-                        <button class="rsvp-btn mt-6 bg-transparent border gold-border text-amber-300 py-2 px-6 rounded-md hover:bg-amber-300 hover:text-black transition" data-event="Reception">Will you attend?</button>
-                    </div>
-                </div>
+        <!-- Phase 5: Gallery -->
+        <section id="prem-gatha" class="py-20">
+            <h2 class="text-5xl text-center text-gold font-bold mb-12">Our Story</h2>
+            <div class="horizontal-scroll-container flex space-x-8 px-8" style="overflow-x: auto; -webkit-overflow-scrolling: touch;">
+                 <div class="flex-shrink-0 w-80 h-96 bg-cover bg-center rounded-lg parallax-bg" style="background-image: url('https://images.unsplash.com/photo-1593104547489-5cfb3839a3b5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80')"></div>
+                <div class="flex-shrink-0 w-80 h-96 bg-cover bg-center rounded-lg parallax-bg" style="background-image: url('https://images.unsplash.com/photo-1541512419328-6695e354a4b4?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80')"></div>
+                <div class="flex-shrink-0 w-80 h-96 bg-cover bg-center rounded-lg parallax-bg" style="background-image: url('https://images.unsplash.com/photo-1604280252119-c56c1b821813?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80')"></div>
+                <div class="flex-shrink-0 w-80 h-96 bg-cover bg-center rounded-lg parallax-bg" style="background-image: url('https://images.unsplash.com/photo-1610715936287-6c2ad208d143?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80')"></div>
             </div>
         </section>
 
-        <!-- Blessings Section -->
-        <section class="py-24 px-8 bg-[#111]">
-            <div class="max-w-4xl mx-auto text-center">
-                <h2 class="font-cormorant text-5xl gold-text mb-4 reveal-up">Blessings & Wishes</h2>
-                <p class="text-neutral-300 mb-8 reveal-up">Your good wishes are our most treasured gift. Please leave us a message.</p>
-                <div class="blessing-form bg-[#1a1a1a] border gold-border p-8 rounded-lg">
-                    <textarea id="blessingInput" rows="4" placeholder="Share your blessings here..." class="w-full bg-neutral-800 border border-neutral-600 rounded-md p-3 text-white focus:outline-none focus:ring-2 focus:ring-amber-400"></textarea>
-                    <button id="sendBlessingBtn" class="mt-6 bg-amber-300 text-black font-bold py-3 px-6 rounded-md hover:bg-amber-400 transition">Send Blessing</button>
-                    <p class="text-xs text-neutral-500 mt-4">(Your message will be saved on this device for you to see)</p>
+        <!-- Phase 6: Aashirwad & RSVP -->
+        <section id="aashirwad" class="py-20 bg-maroon bg-opacity-50 text-center">
+             <h2 class="text-5xl text-center text-gold font-bold mb-12">Blessings & RSVP</h2>
+            <div class="container mx-auto px-4 max-w-xl">
+                <div class="mb-12">
+                    <h3 class="text-3xl text-gold mb-4">Leave Your Blessings</h3>
+                    <textarea id="blessing-text" class="w-full h-32 p-4 bg-maroon border border-gold rounded-lg text-white" placeholder="Your loving wishes..."></textarea>
+                    <button id="submit-blessing" class="mt-4 bg-gold text-maroon px-8 py-2 rounded-full font-bold hover:bg-opacity-80 transition-all">Send Blessings</button>
+                    <div id="blessings-display" class="mt-8 text-left space-y-4"></div>
                 </div>
-                <div id="blessingsContainer" class="mt-12 text-left space-y-4">
-                    <!-- Blessings will be dynamically added here -->
+                <div>
+                    <h3 class="text-3xl text-gold mb-4">Will you be gracing us with your presence?</h3>
+                    <div id="rsvp-buttons" class="flex justify-center space-x-4">
+                        <button data-rsvp="attending" class="rsvp-button bg-transparent border border-gold text-gold px-8 py-2 rounded-full font-bold hover:bg-gold hover:text-maroon transition-all">Attending</button>
+                        <button data-rsvp="not-attending" class="rsvp-button bg-transparent border border-gold text-gold px-8 py-2 rounded-full font-bold hover:bg-gold hover:text-maroon transition-all">Not Attending</button>
+                    </div>
+                    <p id="rsvp-feedback" class="mt-4 text-lg text-gold"></p>
                 </div>
             </div>
         </section>
-
-        <footer class="text-center py-16 px-8">
-            <p class="text-3xl font-cormorant gold-text">#RiyaWedsRo</p>
-            <p class="mt-4 text-neutral-400">We are so grateful to celebrate this moment with you.</p>
-            <p class="text-2xl font-cormorant mt-2 text-white">Rohan & Priya</p>
-        </footer>
-
     </main>
 
     <script>
-    document.addEventListener('DOMContentLoaded', () => {
-        gsap.registerPlugin(ScrollTrigger);
+        document.addEventListener('DOMContentLoaded', () => {
+            gsap.registerPlugin(ScrollTrigger);
 
-        const guestModal = document.getElementById('guestModal');
-        const modalContent = document.getElementById('modalContent');
-        const mainContent = document.getElementById('mainContent');
-        const guestNameInput = document.getElementById('guestNameInput');
-        const submitNameBtn = document.getElementById('submitNameBtn');
-        const guestNameDisplay = document.getElementById('guestNameDisplay');
-        
-        // --- 1. GUEST PERSONALIZATION ---
-        const savedGuestName = localStorage.getItem('weddingGuestName');
-
-        if (savedGuestName) {
-            personalizePage(savedGuestName);
-            guestModal.style.display = 'none';
-            mainContent.style.opacity = '1';
-            runAnimations();
-        } else {
-            gsap.to(modalContent, { duration: 0.5, scale: 1, opacity: 1, delay: 0.2 });
-        }
-
-        submitNameBtn.addEventListener('click', () => {
-            const name = guestNameInput.value.trim();
-            if (name) {
-                localStorage.setItem('weddingGuestName', name);
-                personalizePage(name);
-                gsap.to(guestModal, { duration: 0.5, opacity: 0, onComplete: () => {
-                    guestModal.style.display = 'none';
-                    gsap.to(mainContent, { duration: 1, opacity: 1 });
-                    runAnimations();
-                }});
-            }
-        });
-        
-        guestNameInput.addEventListener('keypress', function (e) {
-            if (e.key === 'Enter') {
-                submitNameBtn.click();
-            }
-        });
-
-
-        function personalizePage(name) {
-            guestNameDisplay.textContent = name;
-        }
-
-        // --- 2. COUNTDOWN TIMER ---
-        const weddingDate = new Date("Oct 26, 2025 10:30:00").getTime();
-        const countdownInterval = setInterval(() => {
-            const now = new Date().getTime();
-            const distance = weddingDate - now;
-
-            if (distance < 0) {
-                clearInterval(countdownInterval);
-                document.getElementById('countdown').innerHTML = "<p class='text-3xl font-cormorant'>The day has arrived!</p>";
-                return;
-            }
-
-            document.getElementById('days').innerText = Math.floor(distance / (1000 * 60 * 60 * 24)).toString().padStart(2, '0');
-            document.getElementById('hours').innerText = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)).toString().padStart(2, '0');
-            document.getElementById('minutes').innerText = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)).toString().padStart(2, '0');
-            document.getElementById('seconds').innerText = Math.floor((distance % (1000 * 60)) / 1000).toString().padStart(2, '0');
-        }, 1000);
-
-        // --- 3. ANIMATIONS ---
-        function runAnimations() {
-            // Hero text animation
-            gsap.from(".reveal-up", {
-                duration: 1,
-                y: 50,
-                opacity: 0,
-                stagger: 0.2,
-                ease: "power3.out",
-                delay: 0.5
-            });
-
-            // Mandala rotation
-            gsap.to("#mandala", {
-                duration: 120,
-                rotation: 360,
-                repeat: -1,
-                ease: "none"
-            });
-            
-            // Scroll-triggered animations for sections
-            const revealElements = document.querySelectorAll(".reveal-up, .story-card, .event-card, .blessing-form");
-            revealElements.forEach(el => {
-                gsap.from(el, {
-                    scrollTrigger: {
-                        trigger: el,
-                        start: "top 85%",
-                        toggleActions: "play none none none"
-                    },
-                    duration: 1,
-                    y: 50,
+            // Phase 1: Loader
+            window.addEventListener('load', () => {
+                gsap.to("#loader", {
                     opacity: 0,
-                    ease: "power3.out"
+                    duration: 1,
+                    onComplete: () => {
+                        document.getElementById('loader').style.display = 'none';
+                    }
                 });
             });
-        }
-        
-        // --- 4. RSVP SIMULATION ---
-        document.querySelectorAll('.rsvp-btn').forEach(button => {
-            button.addEventListener('click', (e) => {
-                e.target.textContent = '🎉 We can\'t wait to see you!';
-                e.target.classList.remove('bg-transparent', 'text-amber-300', 'hover:bg-amber-300', 'hover:text-black');
-                e.target.classList.add('bg-green-500', 'text-white', 'cursor-not-allowed');
-                e.target.disabled = true;
+
+            // Phase 2: Unveiling
+            const openButton = document.getElementById('open-invitation');
+            openButton.addEventListener('click', () => {
+                const tl = gsap.timeline({
+                    onComplete: () => {
+                        // Hide the curtain after animation to allow clicks
+                        document.getElementById('curtain').style.display = 'none';
+                    }
+                });
+                tl.to("#open-invitation", { opacity: 0, duration: 0.5, y: 20 })
+                  .to("#left-door", { x: '-100%', duration: 1.5, ease: 'power2.inOut' })
+                  .to("#right-door", { x: '100%', duration: 1.5, ease: 'power2.inOut' }, "-=1.5")
+                  .to("#main-content", { opacity: 1, duration: 1 })
+                  .from("#aamantran > *", { opacity: 0, y: 30, stagger: 0.2, duration: 1 }, "-=0.5");
             });
-        });
-        
-        // --- 5. ADD TO CALENDAR ---
-        const calendarLink = document.getElementById('addToCalendar');
-        const title = encodeURIComponent("Rohan & Priya's Wedding");
-        const startDate = "20251026T050000Z"; // 10:30 AM IST is 05:00 UTC
-        const endDate = "20251026T080000Z"; // Assuming 3 hours
-        const details = encodeURIComponent("Celebrating the wedding of Rohan and Priya. More details at [Your Website Link Here]");
-        const location = encodeURIComponent("The Royal Garden Lawns");
-        const googleCalendarUrl = `https://www.google.com/calendar/render?action=TEMPLATE&text=${title}&dates=${startDate}/${endDate}&details=${details}&location=${location}`;
-        calendarLink.href = googleCalendarUrl;
 
-        // --- 6. BLESSINGS GUESTBOOK SIMULATION ---
-        const blessingInput = document.getElementById('blessingInput');
-        const sendBlessingBtn = document.getElementById('sendBlessingBtn');
-        const blessingsContainer = document.getElementById('blessingsContainer');
-        
-        // Load saved blessings
-        let blessings = JSON.parse(localStorage.getItem('weddingBlessings')) || [];
+            // Phase 4: Card Hover
+            // This is handled by CSS :hover pseudo-class for simplicity.
 
-        function renderBlessings() {
-            blessingsContainer.innerHTML = '';
-            blessings.forEach(blessing => {
-                const blessingEl = document.createElement('div');
-                blessingEl.className = 'bg-[#1a1a1a] p-4 rounded-lg border-l-4 gold-border';
-                blessingEl.innerHTML = `<p class="italic">"${blessing.text}"</p><p class="text-right text-sm gold-text mt-2">- ${blessing.author}</p>`;
-                blessingsContainer.prepend(blessingEl);
+            // Phase 5: Parallax Gallery
+            gsap.utils.toArray(".parallax-bg").forEach(bg => {
+                gsap.to(bg, {
+                    backgroundPosition: "50% -50px",
+                    ease: "none",
+                    scrollTrigger: {
+                        trigger: bg,
+                        start: "top bottom",
+                        end: "bottom top",
+                        scrub: true
+                    }
+                });
             });
-        }
-        
-        renderBlessings();
 
-        sendBlessingBtn.addEventListener('click', () => {
-            const text = blessingInput.value.trim();
-            const author = localStorage.getItem('weddingGuestName') || 'A Well-Wisher';
+            // Fade in sections on scroll
+            gsap.utils.toArray('section').forEach((section, i) => {
+                if (i > 0) { // Skip the first section
+                    gsap.from(section, {
+                        opacity: 0,
+                        y: 50,
+                        duration: 1,
+                        scrollTrigger: {
+                            trigger: section,
+                            start: 'top 80%',
+                            toggleActions: 'play none none none'
+                        }
+                    });
+                }
+            });
 
-            if (text) {
-                blessings.push({ text, author });
-                localStorage.setItem('weddingBlessings', JSON.stringify(blessings));
-                renderBlessings();
-                blessingInput.value = '';
+            // Phase 6: Blessings & RSVP
+            const blessingText = document.getElementById('blessing-text');
+            const submitBlessing = document.getElementById('submit-blessing');
+            const blessingsDisplay = document.getElementById('blessings-display');
+            const rsvpButtons = document.querySelectorAll('.rsvp-button');
+            const rsvpFeedback = document.getElementById('rsvp-feedback');
 
-                // Animate the new blessing
-                gsap.from(blessingsContainer.firstChild, { duration: 0.7, opacity: 0, y: -20, ease: 'power3.out' });
+            // Load from localStorage
+            const savedBlessings = JSON.parse(localStorage.getItem('weddingBlessings')) || [];
+            savedBlessings.forEach(b => displayBlessing(b.text, b.date));
+
+            const savedRSVP = localStorage.getItem('weddingRSVP');
+            if(savedRSVP) {
+                updateRSVPUI(savedRSVP);
             }
+
+            function displayBlessing(text, date) {
+                const blessingEl = document.createElement('div');
+                blessingEl.className = 'bg-maroon p-4 rounded-lg border border-gold border-opacity-30';
+                blessingEl.innerHTML = `<p>"${text}"</p><small class="text-gray-400">${date}</small>`;
+                blessingsDisplay.prepend(blessingEl);
+            }
+
+            submitBlessing.addEventListener('click', () => {
+                const text = blessingText.value.trim();
+                if (text) {
+                    const date = new Date().toLocaleString();
+                    displayBlessing(text, date);
+
+                    const currentBlessings = JSON.parse(localStorage.getItem('weddingBlessings')) || [];
+                    currentBlessings.push({ text, date });
+                    localStorage.setItem('weddingBlessings', JSON.stringify(currentBlessings));
+
+                    blessingText.value = '';
+                }
+            });
+
+            function updateRSVPUI(status) {
+                rsvpButtons.forEach(btn => {
+                    if(btn.dataset.rsvp === status) {
+                        btn.classList.add('bg-gold', 'text-maroon');
+                        btn.classList.remove('bg-transparent', 'text-gold');
+                    } else {
+                        btn.classList.remove('bg-gold', 'text-maroon');
+                        btn.classList.add('bg-transparent', 'text-gold');
+                    }
+                });
+                 if (status === 'attending') {
+                    rsvpFeedback.textContent = "We eagerly await your presence!";
+                } else {
+                    rsvpFeedback.textContent = "You will be missed!";
+                }
+            }
+
+            rsvpButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const rsvpStatus = button.dataset.rsvp;
+                    localStorage.setItem('weddingRSVP', rsvpStatus);
+                    updateRSVPUI(rsvpStatus);
+                });
+            });
         });
-    });
     </script>
 </body>
 </html>
-
