@@ -28,18 +28,51 @@ document.addEventListener('DOMContentLoaded', () => {
                   .from("#aamantran > *", { opacity: 0, y: 30, stagger: 0.2, duration: 1 }, "-=0.5");
             });
 
+            // Scroll Prompt Animation
+            gsap.to("#scroll-prompt", {
+                opacity: 0,
+                scrollTrigger: {
+                    trigger: "#aamantran",
+                    start: "top top",
+                    end: "bottom top",
+                    scrub: true
+                }
+            });
+
             // Phase 4: Card Hover
             // This is handled by CSS :hover pseudo-class for simplicity.
 
-            // Phase 5: Parallax Gallery
-            gsap.utils.toArray(".parallax-bg").forEach(bg => {
-                gsap.to(bg, {
+            // Phase 5: Parallax Gallery & Scroll Animation
+            const galleryContainer = document.querySelector(".horizontal-scroll-container");
+            const galleryItems = gsap.utils.toArray(".gallery-item");
+
+            galleryItems.forEach(item => {
+                // Entrance animation for each item
+                gsap.from(item, {
+                    opacity: 0,
+                    y: 50,
+                    scale: 0.9,
+                    duration: 1,
+                    ease: 'power2.out',
+                    scrollTrigger: {
+                        trigger: item,
+                        scroller: galleryContainer, // Specify the scroller
+                        horizontal: true, // Enable horizontal scrolling trigger
+                        start: 'left 90%', // Trigger when the left of the item hits 90% of the container width
+                        toggleActions: 'play none none none',
+                    }
+                });
+
+                // Parallax for background (remains the same)
+                gsap.to(item, {
                     backgroundPosition: "50% -50px",
                     ease: "none",
                     scrollTrigger: {
-                        trigger: bg,
-                        start: "top bottom",
-                        end: "bottom top",
+                        trigger: item,
+                        scroller: galleryContainer,
+                        horizontal: true,
+                        start: "left right", // Starts when the left of the item hits the right of the scroller
+                        end: "right left", // Ends when the right of the item hits the left of the scroller
                         scrub: true
                     }
                 });
@@ -154,18 +187,30 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             rsvpButtons.forEach(button => {
-                button.addEventListener('click', () => {
-                    const rsvpStatus = button.dataset.rsvp;
-                    localStorage.setItem('weddingRSVP', rsvpStatus);
-                    updateRSVPUI(rsvpStatus);
+                button.addEventListener('click', (e) => {
+                    const clickedButton = e.currentTarget;
+                    const rsvpStatus = clickedButton.dataset.rsvp;
 
-                    const phoneNumber = "917355556366";
-                    const message = rsvpStatus === 'attending'
-                        ? "I am delighted to confirm my attendance at your wedding!"
-                        : "I regret that I won't be able to attend, but I send my warmest wishes.";
+                    // GSAP Animation for feedback
+                    gsap.to(clickedButton, {
+                        scale: 1.1,
+                        duration: 0.2,
+                        yoyo: true,
+                        repeat: 1,
+                        ease: 'power1.inOut',
+                        onComplete: () => {
+                            localStorage.setItem('weddingRSVP', rsvpStatus);
+                            updateRSVPUI(rsvpStatus);
 
-                    const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
-                    window.open(whatsappUrl, '_blank');
+                            const phoneNumber = "917355556366";
+                            const message = rsvpStatus === 'attending'
+                                ? "I am delighted to confirm my attendance at your wedding!"
+                                : "I regret that I won't be able to attend, but I send my warmest wishes.";
+
+                            const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+                            window.open(whatsappUrl, '_blank');
+                        }
+                    });
                 });
             });
         });
