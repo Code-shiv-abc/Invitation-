@@ -9,7 +9,6 @@
     <meta property="og:url" content="[YOUR_FULL_WEBSITE_URL]" />
     <meta property="og:type" content="website" />
     <title>Shiv & Priya's Wedding</title>
-    <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=Poppins:wght@400;500&display=swap" rel="stylesheet">
@@ -50,10 +49,28 @@
             background-repeat: no-repeat;
             background-size: cover;
         }
+        .gold-text {
+            background-image: linear-gradient(145deg, #BF953F, #FCF6BA, #B38728, #FBF5B7, #AA771C);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
+        }
+
+        .ornate-divider {
+            border: 0;
+            height: 1px;
+            margin: 60px auto;
+            width: 80%;
+            background-image: linear-gradient(to right, transparent, #FFD700, transparent);
+        }
+        .ganesha-icon-container svg {
+            fill: #FFD700;
+            filter: drop-shadow(3px 3px 2px rgba(0,0,0,0.3));
+        }
     </style>
 </head>
 <body class="bg-maroon paisley-pattern overflow-x-hidden">
-<div id="preloader"><div class="gold-text" style="font-size: 2.5rem; animation: pulse 2s infinite;">[S & P]</div></div>
     <!-- Phase 1: Loader -->
     <div id="loader" class="fixed inset-0 bg-maroon z-50 flex items-center justify-center">
         <svg class="animate-spin h-24 w-24 text-gold" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
@@ -77,21 +94,24 @@
     <main id="main-content" class="opacity-0">
         <!-- Phase 3: Aamantran -->
         <section id="aamantran" class="min-h-screen flex flex-col items-center justify-center text-center p-8">
-            <div class="devanagari text-2xl text-gold mb-2">|| श्री गणेशाय नमः ||</div>
-            <div class="text-sm text-gray-300 mb-8">|| Shree Ganeshay Namah ||</div>
-
-            <div class="my-12">
-                <div class="devanagari text-4xl text-gold leading-relaxed">वक्रतुण्ड महाकाय सूर्यकोटि समप्रभ।</div>
-                <div class="devanagari text-4xl text-gold leading-relaxed">निर्विघ्नं कुरु मे देव सर्वकार्येषु सर्वदा॥</div>
+            <!-- Ganesha Icon -->
+            <div class="ganesha-icon-container mb-8">
+                <svg width="100px" height="100px" viewBox="0 0 1024 1024" class="g-8a5e5de4" xmlns="http://www.w3.org/2000/svg"><g transform="translate(0, 0) scale(1, 1)"><path d="M512 0c-282.77 0-512 229.23-512 512s229.23 512 512 512c282.77 0 512-229.23 512-512S794.77 0 512 0zM404.38 300.49c-2.34-40.19 28.92-74.82 69.11-74.82 28.91 0 54.34 16.89 65.3 41.24 1.41 3.09 3.12 6.06 5.04 8.82-44.42-2.14-80.11 32.4-79.45 74.95v-50.19zM228.69 588.35c-3.11-45.73 30.6-84.34 76.32-84.34 32.89 0 61.64 20 73.1 48.63 1.63 4.07 3.53 7.97 5.64 11.66-50.11-2.43-90.35 36.52-89.62 84.87v-60.82zM512 1024c-282.77 0-512-229.23-512-512S229.23 0 512 0c282.77 0 512 229.23 512 512S794.77 1024 512 1024z" fill-rule="evenodd" fill-opacity="1" fill="#000000" stroke="none"></path><path d="M512 0c-282.77 0-512 229.23-512 512s229.23 512 512 512c282.77 0 512-229.23 512-512S794.77 0 512 0zM300.49 404.38c-40.19 2.34-74.82-28.92-74.82-69.11 0-28.91 16.89-54.34 41.24-65.3 3.09-1.41 6.06-3.12 8.82-5.04-2.14 44.42 32.4 80.11 74.95 79.45h-50.19zM588.35 228.69c-45.73 3.11-84.34-30.6-84.34-76.32 0-32.89 20-61.64 48.63-73.1 4.07-1.63 7.97-3.53 11.66-5.64-2.43 50.11 36.52 90.35 84.87 89.62v60.82zM512 1024c-282.77 0-512-229.23-512-512S229.23 0 512 0c282.77 0 512 229.23 512 512S794.77 1024 512 1024z" fill-rule="evenodd" fill-opacity="1" fill="#000000" stroke="none"></path><path d="M512 0c-282.77 0-512 229.23-512 512s229.23 512 512 512c282.77 0 512-229.23 512-512S794.77 0 512 0zM723.31 588.35c3.11-45.73-30.6-84.34-76.32-84.34-32.89 0-61.64 20-73.1 48.63-1.63 4.07-3.53 7.97-5.64 11.66 50.11-2.43 90.35 36.52 89.62 84.87v-60.82zM512 1024c-282.77 0-512-229.23-512-512S229.23 0 512 0c282.77 0 512 229.23 512 512S794.77 1024 512 1024z" fill-rule="evenodd" fill-opacity="1" fill="#000000" stroke="none"></path><path d="M834.42 473.51c-40.19-2.34-74.82 28.92-74.82 69.11 0 28.91 16.89 54.34 41.24 65.3 3.09 1.41 6.06 3.12 8.82 5.04 2.14-44.42-32.4-80.11-74.95-79.45h50.19zM512 0C229.23 0 0 229.23 0 512s229.23 512 512 512c282.77 0 512-229.23 512-512S794.77 0 512 0zm-2.31 928.39c-230.14 0-416.39-186.25-416.39-416.39S279.55 95.61 509.69 95.61c230.14 0 416.39 186.25 416.39 416.39S742.14 928.39 509.69 928.39z" fill-rule="evenodd" fill-opacity="1" fill="#000000" stroke="none"></path><path d="M512 0c-282.77 0-512 229.23-512 512s229.23 512 512 512c282.77 0 512-229.23 512-512S794.77 0 512 0zM619.62 723.31c40.19-2.34 74.82 28.92 74.82 69.11 0 28.91-16.89 54.34-41.24 65.3-3.09 1.41-6.06 3.12-8.82 5.04 2.14-44.42-32.4-80.11-74.95-79.45h50.19zM512 1024c-282.77 0-512-229.23-512-512S229.23 0 512 0c282.77 0 512 229.23 512 512S794.77 1024 512 1024z" fill-rule="evenodd" fill-opacity="1" fill="#000000" stroke="none"></path><path d="M512 0c-282.77 0-512 229.23-512 512s229.23 512 512 512c282.77 0 512-229.23 512-512S794.77 0 512 0zM428.16 834.42c45.73-3.11 84.34 30.6 84.34 76.32 0 32.89-20 61.64-48.63 73.1-4.07 1.63-7.97 3.53-11.66 5.64 2.43-50.11-36.52-90.35-84.87-89.62v-60.82zM512 1024c-282.77 0-512-229.23-512-512S229.23 0 512 0c282.77 0 512 229.23 512 512S794.77 1024 512 1024z" fill-rule="evenodd" fill-opacity="1" fill="#000000" stroke="none"></path></g></svg>
             </div>
 
-            <div class="italic text-lg text-gray-300 my-4">
-                <p>Vakratunda Mahakaya Suryakoti Samaprabha.</p>
-                <p>Nirvighnam Kuru Me Deva Sarvakaryeshu Sarvada.</p>
+            <div class="my-8">
+                <div class="devanagari text-3xl text-gold leading-relaxed">वक्रतुण्ड महाकाय सूर्यकोटि समप्रभ।</div>
+                <div class="devanagari text-3xl text-gold leading-relaxed">निर्विघ्नं कुरु मे देव सर्वकार्येषु सर्वदा॥</div>
+                <div class="italic text-md text-gray-300 my-4">
+                    <p>Vakratunda Mahakaya Suryakoti Samaprabha.</p>
+                    <p>Nirvighnam Kuru Me Deva Sarvakaryeshu Sarvada.</p>
+                </div>
+                <p class="text-md my-4 max-w-2xl mx-auto">
+                    "O, Lord with a curved trunk and a mighty body, whose splendor is equal to a million suns, please make all my endeavors free of obstacles, always."
+                </p>
             </div>
-            <div class="text-lg my-4 max-w-2xl">
-                "O, Lord with a curved trunk and a mighty body, whose splendor is equal to a million suns, please make all my endeavors free of obstacles, always."
-            </div>
+
+            <hr class="ornate-divider" />
 
             <div class="mt-12 text-xl space-y-6">
                 <p>With the divine blessings of Smt. & Shri. Ram and Sita Sharma</p>
@@ -173,7 +193,6 @@
         </section>
     </main>
 
-    <script src="script.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             gsap.registerPlugin(ScrollTrigger);
