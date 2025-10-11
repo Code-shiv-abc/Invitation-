@@ -3,9 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>An Indian Wedding Invitation</title>
+    <meta property="og:title" content="Shiv & Priya Are Getting Married!" />
+    <meta property="og:description" content="Join us for the celebration of our wedding on December 5th, 2025." />
+    <meta property="og:image" content="[FULL_URL_TO_YOUR_BEST_PHOTO.jpg]" />
+    <meta property="og:url" content="[YOUR_FULL_WEBSITE_URL]" />
+    <meta property="og:type" content="website" />
+    <title>Shiv & Priya's Wedding</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=Poppins:wght@400;500&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;700&family=Tiro+Devanagari+Sanskrit&display=swap" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <style>
@@ -45,7 +53,7 @@
     </style>
 </head>
 <body class="bg-maroon paisley-pattern overflow-x-hidden">
-
+<div id="preloader"><div class="gold-text" style="font-size: 2.5rem; animation: pulse 2s infinite;">[S & P]</div></div>
     <!-- Phase 1: Loader -->
     <div id="loader" class="fixed inset-0 bg-maroon z-50 flex items-center justify-center">
         <svg class="animate-spin h-24 w-24 text-gold" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
@@ -88,16 +96,16 @@
             <div class="mt-12 text-xl space-y-6">
                 <p>With the divine blessings of Smt. & Shri. Ram and Sita Sharma</p>
                 <p>Smt. & Shri. Ashok and Meera Kumar<br>request the honour of your presence at the wedding ceremony of their beloved son</p>
-                <h1 class="text-5xl text-gold font-bold my-4">Raj</h1>
+                <h1 class="text-5xl text-gold font-bold my-4 gold-text">Raj</h1>
                 <p>with</p>
-                <h1 class="text-5xl text-gold font-bold my-4">Priya</h1>
+                <h1 class="text-5xl text-gold font-bold my-4 gold-text">Priya</h1>
                 <p>daughter of Smt. & Shri. Vijay and Sunita Patel</p>
             </div>
         </section>
-
+<hr class='ornate-divider'>
         <!-- Phase 4: Itinerary -->
         <section id="utsav" class="py-20 bg-maroon bg-opacity-50">
-            <h2 class="text-5xl text-center text-gold font-bold mb-12">The Festivities</h2>
+            <h2 class="text-5xl text-center text-gold font-bold mb-12 gold-text">The Festivities</h2>
             <div class="container mx-auto px-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
                 <!-- Haldi -->
                 <div class="card-3d bg-saffron bg-opacity-20 border border-gold p-6 rounded-lg text-center">
@@ -131,10 +139,10 @@
                 </div>
             </div>
         </section>
-
+<hr class='ornate-divider'>
         <!-- Phase 5: Gallery -->
         <section id="prem-gatha" class="py-20">
-            <h2 class="text-5xl text-center text-gold font-bold mb-12">Our Story</h2>
+            <h2 class="text-5xl text-center text-gold font-bold mb-12 gold-text">Our Story</h2>
             <div class="horizontal-scroll-container flex space-x-8 px-8" style="overflow-x: auto; -webkit-overflow-scrolling: touch;">
                  <div class="flex-shrink-0 w-80 h-96 bg-cover bg-center rounded-lg parallax-bg" style="background-image: url('https://images.unsplash.com/photo-1593104547489-5cfb3839a3b5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80')"></div>
                 <div class="flex-shrink-0 w-80 h-96 bg-cover bg-center rounded-lg parallax-bg" style="background-image: url('https://images.unsplash.com/photo-1541512419328-6695e354a4b4?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80')"></div>
@@ -142,10 +150,10 @@
                 <div class="flex-shrink-0 w-80 h-96 bg-cover bg-center rounded-lg parallax-bg" style="background-image: url('https://images.unsplash.com/photo-1610715936287-6c2ad208d143?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80')"></div>
             </div>
         </section>
-
+<hr class='ornate-divider'>
         <!-- Phase 6: Aashirwad & RSVP -->
         <section id="aashirwad" class="py-20 bg-maroon bg-opacity-50 text-center">
-             <h2 class="text-5xl text-center text-gold font-bold mb-12">Blessings & RSVP</h2>
+             <h2 class="text-5xl text-center text-gold font-bold mb-12 gold-text">Blessings & RSVP</h2>
             <div class="container mx-auto px-4 max-w-xl">
                 <div class="mb-12">
                     <h3 class="text-3xl text-gold mb-4">Leave Your Blessings</h3>
@@ -165,6 +173,7 @@
         </section>
     </main>
 
+    <script src="script.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             gsap.registerPlugin(ScrollTrigger);
