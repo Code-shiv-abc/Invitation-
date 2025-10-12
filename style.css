@@ -1,6 +1,6 @@
 body {
             font-family: 'Cormorant Garamond', serif;
-            background-color: #2a0000;
+            background: radial-gradient(circle, #4d001e, #2a0000);
             color: #f0e6d2;
         }
         .devanagari {
@@ -11,7 +11,13 @@ body {
         .bg-emerald { background-color: #50c878; }
         .text-gold { color: #FFD700; }
         .border-gold { border-color: #FFD700; }
-        .bg-gold { background-color: #FFD700; }
+        .bg-gold { background-color: #FFD700;
+        transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .bg-gold:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.4);
+        }
 
         /* Custom Patterns */
         .paisley-pattern {
@@ -20,10 +26,12 @@ body {
 
         .card-3d {
             transform-style: preserve-3d;
-            transition: transform 0.5s;
+            transition: transform 0.5s, box-shadow 0.5s;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
         }
         .card-3d:hover {
             transform: rotateY(10deg) rotateX(5deg) scale(1.05);
+            box-shadow: 0 15px 30px rgba(255, 215, 0, 0.2);
         }
         .horizontal-scroll-container {
             overflow-x: auto;
@@ -57,7 +65,7 @@ body {
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
-            text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
+            text-shadow: 2px 2px 5px rgba(0,0,0,0.3);
         }
 
         .ornate-divider {
@@ -119,4 +127,58 @@ body {
             60% {
                 transform: translateY(-10px);
             }
+        }
+
+        /* Mandala Loader */
+        .mandala-loader {
+            position: relative;
+            width: 150px;
+            height: 150px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .mandala-ring {
+            position: absolute;
+            border-style: solid;
+            border-color: #FFD700 transparent;
+            border-radius: 50%;
+            animation-duration: 4s;
+            animation-timing-function: linear;
+            animation-iteration-count: infinite;
+        }
+        .mandala-ring:nth-child(1) {
+            width: 150px;
+            height: 150px;
+            border-width: 3px;
+            animation-name: rotate-right;
+        }
+        .mandala-ring:nth-child(2) {
+            width: 120px;
+            height: 120px;
+            border-width: 2px;
+            animation-name: rotate-left;
+        }
+        .mandala-ring:nth-child(3) {
+            width: 90px;
+            height: 90px;
+            border-width: 3px;
+            animation-name: rotate-right;
+            animation-duration: 3s;
+        }
+        .mandala-ring:nth-child(4) {
+            width: 60px;
+            height: 60px;
+            border-width: 2px;
+            animation-name: rotate-left;
+            animation-duration: 2s;
+        }
+
+        @keyframes rotate-right {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        @keyframes rotate-left {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(-360deg); }
         }
