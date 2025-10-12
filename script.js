@@ -25,7 +25,34 @@ document.addEventListener('DOMContentLoaded', () => {
                   .to("#left-door", { x: '-100%', duration: 1.5, ease: 'power2.inOut' })
                   .to("#right-door", { x: '100%', duration: 1.5, ease: 'power2.inOut' }, "-=1.5")
                   .to("#main-content", { opacity: 1, duration: 1 })
-                  .from("#aamantran > *", { opacity: 0, y: 30, stagger: 0.2, duration: 1 }, "-=0.5");
+                  .from("#aamantran > *", { opacity: 0, y: 30, stagger: 0.2, duration: 1 }, "-=0.5")
+                  .add(() => {
+                    const ganeshaPaths = document.querySelectorAll('.ganesha-icon-container .path');
+                    ganeshaPaths.forEach((path) => {
+                        const length = path.getTotalLength();
+                        path.style.strokeDasharray = length;
+                        path.style.strokeDashoffset = length;
+                    });
+
+                    const drawTl = gsap.timeline({
+                        scrollTrigger: {
+                            trigger: ".ganesha-icon-container",
+                            start: "top 70%",
+                            toggleActions: "play none none none"
+                        }
+                    });
+
+                    drawTl.to(ganeshaPaths, {
+                        strokeDashoffset: 0,
+                        duration: 3,
+                        ease: "power1.inOut",
+                        stagger: 0.2
+                    }).to(ganeshaPaths, {
+                        fill: "#FFD700",
+                        duration: 1,
+                        ease: "sine.inOut"
+                    }, "-=0.5");
+                });
             });
 
             // Scroll Prompt Animation
@@ -47,23 +74,22 @@ document.addEventListener('DOMContentLoaded', () => {
             const galleryItems = gsap.utils.toArray(".gallery-item");
 
             galleryItems.forEach(item => {
-                // Entrance animation for each item
+                // Initial state for scroll-in view
                 gsap.from(item, {
                     opacity: 0,
-                    y: 50,
-                    scale: 0.9,
-                    duration: 1,
+                    scale: 0.95,
+                    y: 30,
                     ease: 'power2.out',
                     scrollTrigger: {
                         trigger: item,
-                        scroller: galleryContainer, // Specify the scroller
-                        horizontal: true, // Enable horizontal scrolling trigger
-                        start: 'left 90%', // Trigger when the left of the item hits 90% of the container width
+                        scroller: galleryContainer,
+                        horizontal: true,
+                        start: 'left 95%',
                         toggleActions: 'play none none none',
                     }
                 });
 
-                // Parallax for background (remains the same)
+                // Parallax for background
                 gsap.to(item, {
                     backgroundPosition: "50% -50px",
                     ease: "none",
@@ -71,26 +97,99 @@ document.addEventListener('DOMContentLoaded', () => {
                         trigger: item,
                         scroller: galleryContainer,
                         horizontal: true,
-                        start: "left right", // Starts when the left of the item hits the right of the scroller
-                        end: "right left", // Ends when the right of the item hits the left of the scroller
+                        start: "left right",
+                        end: "right left",
                         scrub: true
                     }
                 });
+
+                // 3D Tilt Effect on Hover
+                item.addEventListener('mousemove', (e) => {
+                    const { left, top, width, height } = item.getBoundingClientRect();
+                    const x = e.clientX - left;
+                    const y = e.clientY - top;
+                    const rotateX = gsap.utils.mapRange(0, height, -15, 15)(y);
+                    const rotateY = gsap.utils.mapRange(0, width, 15, -15)(x);
+
+                    gsap.to(item, {
+                        rotationX: rotateX,
+                        rotationY: rotateY,
+                        transformPerspective: 1000,
+                        ease: 'power1.out',
+                        duration: 0.5
+                    });
+                });
+
+                item.addEventListener('mouseleave', () => {
+                    gsap.to(item, {
+                        rotationX: 0,
+                        rotationY: 0,
+                        ease: 'elastic.out(1, 0.5)',
+                        duration: 1
+                    });
+                });
             });
 
-            // Fade in sections on scroll
-            gsap.utils.toArray('section').forEach((section, i) => {
-                if (i > 0) { // Skip the first section
-                    gsap.from(section, {
+            // Choreographed Scroll-Triggered Animations
+            const sections = document.querySelectorAll('section');
+
+            sections.forEach((section, i) => {
+                if (i === 0) return; // Skip the first section (Aamantran) as it's handled by the curtain opening
+
+                const timeline = gsap.timeline({
+                    scrollTrigger: {
+                        trigger: section,
+                        start: 'top 80%',
+                        toggleActions: 'play none none none'
+                    }
+                });
+
+                const sectionTitle = section.querySelector('h2');
+                const sectionContent = section.querySelectorAll('*:not(h2):not(.ornate-divider)');
+
+                if (sectionTitle) {
+                    timeline.from(sectionTitle, {
                         opacity: 0,
                         y: 50,
                         duration: 1,
-                        scrollTrigger: {
-                            trigger: section,
-                            start: 'top 80%',
-                            toggleActions: 'play none none none'
-                        }
+                        ease: 'power2.out'
                     });
+                }
+
+                if (section.id === 'utsav') {
+                    const cards = section.querySelectorAll('.card-3d');
+                    timeline.from(cards, {
+                        opacity: 0,
+                        y: 50,
+                        scale: 0.9,
+                        rotationY: -30,
+                        duration: 0.8,
+                        stagger: 0.2,
+                        ease: 'power2.out'
+                    }, "-=0.5");
+                } else if (section.id === 'venue') {
+                    const paragraph = section.querySelector('p');
+                    const mapIcon = section.querySelector('a');
+                    timeline.from(paragraph, { opacity: 0, y: 30, duration: 0.8, ease: 'power2.out' }, "-=0.5")
+                            .from(mapIcon, { opacity: 0, scale: 0.5, duration: 1, ease: 'elastic.out(1, 0.5)' }, "-=0.3");
+                } else if (section.id === 'prem-gatha') {
+                    // The gallery items have their own scroll trigger, so we just animate the title.
+                    // The main title animation is already handled.
+                } else if (section.id === 'aashirwad') {
+                    const blessingBox = section.querySelector('.mb-12');
+                    const rsvpBox = section.querySelector('div:not(.mb-12)');
+                     timeline.from(blessingBox, { opacity: 0, y: 50, duration: 1, ease: 'power2.out' }, "-=0.5")
+                             .from(rsvpBox, { opacity: 0, y: 50, duration: 1, ease: 'power2.out' }, "-=0.7");
+                } else {
+                     if (sectionContent.length > 0) {
+                        timeline.from(sectionContent, {
+                            opacity: 0,
+                            y: 30,
+                            stagger: 0.15,
+                            duration: 0.8,
+                            ease: 'power2.out'
+                        }, "-=0.5");
+                    }
                 }
             });
 
@@ -138,6 +237,34 @@ document.addEventListener('DOMContentLoaded', () => {
             const blessingsDisplay = document.getElementById('blessings-display');
             const rsvpButtons = document.querySelectorAll('.rsvp-button');
             const rsvpFeedback = document.getElementById('rsvp-feedback');
+
+            // --- Micro-interactions and Visual Polish ---
+
+            // 1. Enhanced Button Hovers
+            const interactiveButtons = document.querySelectorAll('button, .venue-icon-link'); // Assuming you add this class to the venue link
+            interactiveButtons.forEach(button => {
+                const tl = gsap.timeline({ paused: true });
+                tl.to(button, {
+                    scale: 1.05,
+                    boxShadow: "0 5px 15px rgba(255, 215, 0, 0.4)",
+                    duration: 0.3,
+                    ease: 'power1.out'
+                });
+
+                button.addEventListener('mouseenter', () => tl.play());
+                button.addEventListener('mouseleave', () => tl.reverse());
+            });
+
+            // 2. Breathing Animation on Names
+            const names = document.querySelectorAll('#aamantran h1.gold-text');
+            gsap.to(names, {
+                scale: 1.03,
+                duration: 2.5,
+                ease: 'sine.inOut',
+                repeat: -1,
+                yoyo: true
+            });
+
 
             // Load from localStorage
             const savedBlessings = JSON.parse(localStorage.getItem('weddingBlessings')) || [];
@@ -212,5 +339,70 @@ document.addEventListener('DOMContentLoaded', () => {
                         }
                     });
                 });
+            });
+
+            // Initialize Particles.js
+            particlesJS('particles-js', {
+                "particles": {
+                    "number": {
+                        "value": 80,
+                        "density": {
+                            "enable": true,
+                            "value_area": 800
+                        }
+                    },
+                    "color": {
+                        "value": "#ffd700"
+                    },
+                    "shape": {
+                        "type": "circle",
+                        "stroke": {
+                            "width": 0,
+                            "color": "#000000"
+                        },
+                    },
+                    "opacity": {
+                        "value": 0.5,
+                        "random": true,
+                        "anim": {
+                            "enable": true,
+                            "speed": 1,
+                            "opacity_min": 0.1,
+                            "sync": false
+                        }
+                    },
+                    "size": {
+                        "value": 3,
+                        "random": true,
+                        "anim": {
+                            "enable": false,
+                        }
+                    },
+                    "line_linked": {
+                        "enable": false,
+                    },
+                    "move": {
+                        "enable": true,
+                        "speed": 1,
+                        "direction": "none",
+                        "random": true,
+                        "straight": false,
+                        "out_mode": "out",
+                        "bounce": false,
+                    }
+                },
+                "interactivity": {
+                    "detect_on": "canvas",
+                    "events": {
+                        "onhover": {
+                            "enable": false,
+                        },
+                        "onclick": {
+                            "enable": false,
+                        },
+                        "resize": true
+                    }
+                },
+                "retina_detect": true
             });
         });
