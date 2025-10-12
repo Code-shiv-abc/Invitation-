@@ -1,6 +1,17 @@
 document.addEventListener('DOMContentLoaded', () => {
             gsap.registerPlugin(ScrollTrigger);
 
+            // Particle Effect Initialization
+            Particles.init({
+                selector: '#particles-bg',
+                maxParticles: 100,
+                sizeVariations: 5,
+                speed: 0.3,
+                color: '#FFD700',
+                minDistance: 120,
+                connectParticles: false
+            });
+
             // Phase 1: Loader
             window.addEventListener('load', () => {
                 gsap.to("#loader", {
@@ -78,20 +89,26 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
             });
 
-            // Fade in sections on scroll
-            gsap.utils.toArray('section').forEach((section, i) => {
-                if (i > 0) { // Skip the first section
-                    gsap.from(section, {
-                        opacity: 0,
-                        y: 50,
-                        duration: 1,
-                        scrollTrigger: {
-                            trigger: section,
-                            start: 'top 80%',
-                            toggleActions: 'play none none none'
-                        }
-                    });
+            // Choreographed Scroll Animations
+            const sections = document.querySelectorAll('section');
+            sections.forEach((section, index) => {
+                if (index === 0) return; // Skip the first section (Aamantran) as it's handled by the curtain opening
+
+                const tl = gsap.timeline({
+                    scrollTrigger: {
+                        trigger: section,
+                        start: 'top 80%',
+                        toggleActions: 'play none none reverse',
+                    }
+                });
+
+                const heading = section.querySelector('h2');
+                const content = section.querySelectorAll('p, div:not(.ganesha-icon-container), a, button, textarea');
+
+                if (heading) {
+                    tl.from(heading, { opacity: 0, y: 50, duration: 1, ease: 'power3.out' });
                 }
+                tl.from(content, { opacity: 0, y: 30, duration: 0.8, stagger: 0.2, ease: 'power2.out' }, "-=0.5");
             });
 
             // Countdown Timer

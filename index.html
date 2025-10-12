@@ -18,6 +18,7 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body class="bg-maroon paisley-pattern overflow-x-hidden">
+    <canvas id="particles-bg"></canvas>
     <!-- Phase 1: Loader -->
     <div id="loader" class="fixed inset-0 bg-maroon z-50 flex items-center justify-center">
         <div class="mandala-loader">
@@ -95,35 +96,35 @@
             <h2 class="text-5xl text-center text-gold font-bold mb-12 gold-text">The Festivities</h2>
             <div class="container mx-auto px-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
                 <!-- Haldi -->
-                <div class="card-3d bg-saffron bg-opacity-20 border border-gold p-6 rounded-lg text-center">
+                <div class="card-3d border border-gold p-6 rounded-lg text-center">
                     <h3 class="text-3xl text-gold mb-2">Haldi</h3>
                     <p class="text-lg">Monday, 20th Nov 2025</p>
                     <p>10:00 AM onwards</p>
                     <button class="add-to-calendar-btn mt-4 bg-gold text-maroon px-4 py-2 rounded-full text-sm" data-event='{"title": "Raj & Priya - Haldi Ceremony", "date": "2025-11-20T10:00:00", "duration": 120}'>Add to Calendar</button>
                 </div>
                 <!-- Mehendi -->
-                <div class="card-3d bg-emerald bg-opacity-20 border border-gold p-6 rounded-lg text-center">
+                <div class="card-3d border border-gold p-6 rounded-lg text-center">
                     <h3 class="text-3xl text-gold mb-2">Mehendi</h3>
                     <p class="text-lg">Monday, 20th Nov 2025</p>
                     <p>06:00 PM onwards</p>
                     <button class="add-to-calendar-btn mt-4 bg-gold text-maroon px-4 py-2 rounded-full text-sm" data-event='{"title": "Raj & Priya - Mehendi Ceremony", "date": "2025-11-20T18:00:00", "duration": 180}'>Add to Calendar</button>
                 </div>
                 <!-- Sangeet -->
-                <div class="card-3d bg-blue-500 bg-opacity-20 border border-gold p-6 rounded-lg text-center">
+                <div class="card-3d border border-gold p-6 rounded-lg text-center">
                      <h3 class="text-3xl text-gold mb-2">Sangeet</h3>
                     <p class="text-lg">Tuesday, 21st Nov 2025</p>
                     <p>07:00 PM onwards</p>
                     <button class="add-to-calendar-btn mt-4 bg-gold text-maroon px-4 py-2 rounded-full text-sm" data-event='{"title": "Raj & Priya - Sangeet Ceremony", "date": "2025-11-21T19:00:00", "duration": 240}'>Add to Calendar</button>
                 </div>
                  <!-- Vivah -->
-                <div class="card-3d bg-red-500 bg-opacity-20 border border-gold p-6 rounded-lg text-center">
+                <div class="card-3d border border-gold p-6 rounded-lg text-center">
                     <h3 class="text-3xl text-gold mb-2">Wedding</h3>
                     <p class="text-lg">Wednesday, 22nd Nov 2025</p>
                     <p>05:00 PM onwards</p>
                     <button class="add-to-calendar-btn mt-4 bg-gold text-maroon px-4 py-2 rounded-full text-sm" data-event='{"title": "Raj & Priya - Wedding Ceremony", "date": "2025-11-22T17:00:00", "duration": 300}'>Add to Calendar</button>
                 </div>
                 <!-- Reception -->
-                <div class="card-3d bg-purple-500 bg-opacity-20 border border-gold p-6 rounded-lg text-center">
+                <div class="card-3d border border-gold p-6 rounded-lg text-center">
                     <h3 class="text-3xl text-gold mb-2">Reception</h3>
                     <p class="text-lg">Wednesday, 22nd Nov 2025</p>
                     <p>08:00 PM onwards</p>
@@ -179,6 +180,7 @@
         </section>
     </main>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/particlesjs/2.2.3/particles.min.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
