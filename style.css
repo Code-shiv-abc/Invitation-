@@ -206,3 +206,9 @@ body {
             from { transform: rotate(0deg); }
             to { transform: rotate(-360deg); }
         }
+
+        .embedded-map {
+            border: 4px solid #FFD700;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+        }
