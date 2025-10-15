@@ -241,18 +241,28 @@ document.addEventListener('DOMContentLoaded', () => {
             // --- Micro-interactions and Visual Polish ---
 
             // 1. Enhanced Button Hovers
-            const interactiveButtons = document.querySelectorAll('button, .venue-icon-link'); // Assuming you add this class to the venue link
+            const interactiveButtons = document.querySelectorAll('button, .venue-icon-link');
             interactiveButtons.forEach(button => {
                 const tl = gsap.timeline({ paused: true });
                 tl.to(button, {
+                    y: -3,
                     scale: 1.05,
-                    boxShadow: "0 5px 15px rgba(255, 215, 0, 0.4)",
+                    boxShadow: "0 8px 20px rgba(255, 215, 0, 0.4)",
                     duration: 0.3,
                     ease: 'power1.out'
                 });
 
                 button.addEventListener('mouseenter', () => tl.play());
-                button.addEventListener('mouseleave', () => tl.reverse());
+                button.addEventListener('mouseleave', () => {
+                    tl.reverse();
+                });
+
+                button.addEventListener('mousedown', () => {
+                    gsap.to(button, { scale: 0.95, duration: 0.1 });
+                });
+                button.addEventListener('mouseup', () => {
+                    gsap.to(button, { scale: 1.05, duration: 0.1 });
+                });
             });
 
             // 2. Breathing Animation on Names
