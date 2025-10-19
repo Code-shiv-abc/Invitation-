@@ -222,3 +222,8 @@ body {
             border-radius: 15px;
             box-shadow: 0 10px 20px rgba(0,0,0,0.3);
         }
+
+#aamantran {
+    justify-content: flex-start; /* Aligns content to the top */
+    padding-top: 5rem; /* Pushes the content down from the top edge */
+}
