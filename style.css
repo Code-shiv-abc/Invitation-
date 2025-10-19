@@ -1,26 +1,31 @@
 body {
             font-family: 'Cormorant Garamond', serif;
-            background: radial-gradient(circle, #4d001e, #2a0000);
+            /* Deeper, richer maroon gradient */
+            background: radial-gradient(circle, #4a001e, #2a0000);
             color: #f0e6d2;
         }
         .font-calligraphy {
-            font-family: 'Alex Brush', cursive;
+            font-family: 'Tangerine', cursive;
         }
 
         .devanagari {
             font-family: 'Tiro Devanagari Sanskrit', serif;
         }
-        .bg-maroon { background-color: #5d001e; }
+        .bg-maroon { background-color: #4a001e; } /* Deepened Maroon */
         .bg-saffron { background-color: #ff9933; }
         .bg-emerald { background-color: #50c878; }
-        .text-gold { color: #FFD700; }
-        .border-gold { border-color: #FFD700; }
-        .bg-gold { background-color: #FFD700;
+        .text-gold { color: #d4af37; } /* Antique Gold */
+        .border-gold { border-color: #d4af37; } /* Antique Gold */
+        .bg-gold { background-color: #d4af37; /* Antique Gold */
         transition: transform 0.3s, box-shadow 0.3s;
         }
         .bg-gold:hover {
             transform: scale(1.05);
-            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.4);
+            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.4); /* Antique Gold Glow */
+        }
+        .paisley-pattern {
+            background-image: url('https://www.transparenttextures.com/patterns/damask.png');
+            background-color: #4a001e; /* Ensure the base color remains */
         }
         #particles-js {
             position: fixed;
@@ -37,8 +42,8 @@ body {
             box-shadow: 0 10px 20px rgba(0,0,0,0.2);
         }
         .card-3d:hover {
-            transform: rotateY(10deg) rotateX(5deg) scale(1.05);
-            box-shadow: 0 15px 30px rgba(255, 215, 0, 0.2);
+            transform: rotateY(15deg) rotateX(10deg) scale(1.1); /* More dramatic tilt */
+            box-shadow: 0 20px 40px rgba(212, 175, 55, 0.3); /* Enhanced shadow */
         }
         .horizontal-scroll-container {
             overflow-x: auto;
@@ -55,7 +60,7 @@ body {
             border-radius: 4px;
         }
         .horizontal-scroll-container::-webkit-scrollbar-thumb {
-            background: #FFD700;
+            background: #d4af37;
             border-radius: 4px;
         }
         .horizontal-scroll-container::-webkit-scrollbar-thumb:hover {
@@ -78,7 +83,8 @@ body {
             background-size: cover;
         }
         .gold-text {
-            background-image: linear-gradient(145deg, #BF953F, #FCF6BA, #B38728, #FBF5B7, #AA771C);
+            /* New Antique Gold Gradient */
+            background-image: linear-gradient(145deg, #d4af37, #f7f0c7, #c09e2e, #f5efba, #b48e28);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
@@ -107,18 +113,18 @@ body {
             left: 0;
             width: 100%;
             height: 1px;
-            background-image: linear-gradient(to right, transparent, #FFD700, transparent);
+            background-image: linear-gradient(to right, transparent, #d4af37, transparent);
             transform: translateY(-50%);
         }
         .ornate-divider::after {
-            content: '⬥'; /* A diamond shape */
+            content: '⚘'; /* A stylized floral/lotus shape */
             position: absolute;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            color: #FFD700;
+            color: #d4af37;
             font-size: 30px;
-            background-color: #5d001e; /* Match the background */
+            background-color: #4a001e; /* Match the background */
             padding: 0 15px;
         }
         .ganesha-icon-container {
@@ -129,7 +135,7 @@ body {
         }
         .ganesha-icon-container svg .path {
           fill: transparent;
-          stroke: #FFD700;
+          stroke: #d4af37;
           stroke-width: 8px; /* Adjust for desired thickness */
         }
         @keyframes pulse-glow {
@@ -139,7 +145,7 @@ body {
             }
             to {
                 transform: scale(1.05);
-                filter: drop-shadow(3px 3px 8px rgba(255, 215, 0, 0.7));
+                filter: drop-shadow(3px 3px 8px rgba(212, 175, 55, 0.7));
             }
         }
         #scroll-prompt {
@@ -169,7 +175,7 @@ body {
         .mandala-ring {
             position: absolute;
             border-style: solid;
-            border-color: #FFD700 transparent;
+            border-color: #d4af37 transparent;
             border-radius: 50%;
             animation-duration: 4s;
             animation-timing-function: linear;
@@ -212,20 +218,12 @@ body {
         }
 
         .embedded-map {
-            border: 4px solid #FFD700;
+            border: 4px solid #d4af37;
             border-radius: 15px;
             box-shadow: 0 10px 20px rgba(0,0,0,0.3);
         }
 
-        h2 {
-            animation: breathing 5s infinite ease-in-out;
-        }
-
-        @keyframes breathing {
-            0%, 100% {
-                transform: scale(1);
-            }
-            50% {
-                transform: scale(1.05);
-            }
-        }
+#aamantran {
+    justify-content: flex-start; /* Aligns content to the top */
+    padding-top: 5rem; /* Pushes the content down from the top edge */
+}

@@ -21,11 +21,11 @@ document.addEventListener('DOMContentLoaded', () => {
                         document.getElementById('curtain').style.display = 'none';
                     }
                 });
-                tl.to("#open-invitation", { opacity: 0, duration: 0.5, y: 20 })
-                  .to("#left-door", { x: '-100%', duration: 1.5, ease: 'power2.inOut' })
-                  .to("#right-door", { x: '100%', duration: 1.5, ease: 'power2.inOut' }, "-=1.5")
-                  .to("#main-content", { opacity: 1, duration: 1 })
-                  .from("#aamantran > *", { opacity: 0, y: 30, stagger: 0.2, duration: 1 }, "-=0.5")
+                tl.to("#open-invitation", { opacity: 0, duration: 0.5, y: 30, ease: 'power2.in' })
+                  .to("#left-door", { x: '-100%', duration: 2, ease: 'power3.inOut' })
+                  .to("#right-door", { x: '100%', duration: 2, ease: 'power3.inOut' }, "<")
+                  .to("#main-content", { opacity: 1, duration: 1.5 }, "-=0.5")
+                  .from("#aamantran > *", { opacity: 0, y: 40, stagger: 0.25, duration: 1.2, ease: 'power2.out' }, "-=1")
                   .add(() => {
                     const ganeshaPaths = document.querySelectorAll('.ganesha-icon-container .path');
                     ganeshaPaths.forEach((path) => {
@@ -44,14 +44,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
                     drawTl.to(ganeshaPaths, {
                         strokeDashoffset: 0,
-                        duration: 3,
-                        ease: "power1.inOut",
-                        stagger: 0.2
+                        duration: 4,
+                        ease: "power2.inOut",
+                        stagger: 0.3
                     }).to(ganeshaPaths, {
-                        fill: "#FFD700",
-                        duration: 1,
+                        fill: "#d4af37",
+                        duration: 1.5,
                         ease: "sine.inOut"
-                    }, "-=0.5");
+                    }, "-=1");
                 });
             });
 
@@ -150,9 +150,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (sectionTitle) {
                     timeline.from(sectionTitle, {
                         opacity: 0,
-                        y: 50,
-                        duration: 1,
-                        ease: 'power2.out'
+                        y: 40, // Reduced y offset for subtlety
+                        duration: 1.2,
+                        ease: 'power3.out'
                     });
                 }
 
@@ -160,35 +160,35 @@ document.addEventListener('DOMContentLoaded', () => {
                     const cards = section.querySelectorAll('.card-3d');
                     timeline.from(cards, {
                         opacity: 0,
-                        y: 50,
-                        scale: 0.9,
-                        rotationY: -30,
-                        duration: 0.8,
+                        y: 40,
+                        scale: 0.95,
+                        rotationY: -20,
+                        duration: 1,
                         stagger: 0.2,
-                        ease: 'power2.out'
-                    }, "-=0.5");
+                        ease: 'power3.out'
+                    }, "-=0.8");
                 } else if (section.id === 'venue') {
                     const paragraph = section.querySelector('p');
-                    const mapIcon = section.querySelector('a');
-                    timeline.from(paragraph, { opacity: 0, y: 30, duration: 0.8, ease: 'power2.out' }, "-=0.5")
-                            .from(mapIcon, { opacity: 0, scale: 0.5, duration: 1, ease: 'elastic.out(1, 0.5)' }, "-=0.3");
+                    const map = section.querySelector('iframe');
+                    timeline.from(paragraph, { opacity: 0, y: 30, duration: 1, ease: 'power3.out' }, "-=0.8")
+                            .from(map, { opacity: 0, scale: 0.95, duration: 1.2, ease: 'power3.out' }, "-=0.6");
                 } else if (section.id === 'prem-gatha') {
                     // The gallery items have their own scroll trigger, so we just animate the title.
                     // The main title animation is already handled.
                 } else if (section.id === 'aashirwad') {
                     const blessingBox = section.querySelector('.mb-12');
                     const rsvpBox = section.querySelector('div:not(.mb-12)');
-                     timeline.from(blessingBox, { opacity: 0, y: 50, duration: 1, ease: 'power2.out' }, "-=0.5")
-                             .from(rsvpBox, { opacity: 0, y: 50, duration: 1, ease: 'power2.out' }, "-=0.7");
+                     timeline.from(blessingBox, { opacity: 0, y: 40, duration: 1.2, ease: 'power3.out' }, "-=0.8")
+                             .from(rsvpBox, { opacity: 0, y: 40, duration: 1.2, ease: 'power3.out' }, "-=0.9");
                 } else {
                      if (sectionContent.length > 0) {
                         timeline.from(sectionContent, {
                             opacity: 0,
                             y: 30,
-                            stagger: 0.15,
-                            duration: 0.8,
-                            ease: 'power2.out'
-                        }, "-=0.5");
+                            stagger: 0.2,
+                            duration: 1,
+                            ease: 'power3.out'
+                        }, "-=0.8");
                     }
                 }
             });
@@ -245,11 +245,11 @@ document.addEventListener('DOMContentLoaded', () => {
             interactiveButtons.forEach(button => {
                 const tl = gsap.timeline({ paused: true });
                 tl.to(button, {
-                    y: -3,
-                    scale: 1.05,
-                    boxShadow: "0 8px 20px rgba(255, 215, 0, 0.4)",
+                    y: -5, // Increased lift
+                    scale: 1.08,
+                    boxShadow: "0 12px 25px rgba(212, 175, 55, 0.4)", // Enhanced shadow
                     duration: 0.3,
-                    ease: 'power1.out'
+                    ease: 'power2.out'
                 });
 
                 button.addEventListener('mouseenter', () => tl.play());
@@ -258,18 +258,18 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
 
                 button.addEventListener('mousedown', () => {
-                    gsap.to(button, { scale: 0.95, duration: 0.1 });
+                    gsap.to(button, { scale: 0.98, y: -2, duration: 0.15, ease: 'power2.in' }); // Press down effect
                 });
                 button.addEventListener('mouseup', () => {
-                    gsap.to(button, { scale: 1.05, duration: 0.1 });
+                    gsap.to(button, { scale: 1.08, y: -5, duration: 0.2, ease: 'power2.out' }); // Release effect
                 });
             });
 
             // 2. Breathing Animation on Names
             const names = document.querySelectorAll('#aamantran h1.gold-text');
             gsap.to(names, {
-                scale: 1.03,
-                duration: 2.5,
+                scale: 1.02, // More subtle scaling
+                duration: 3, // Slower, more graceful duration
                 ease: 'sine.inOut',
                 repeat: -1,
                 yoyo: true
