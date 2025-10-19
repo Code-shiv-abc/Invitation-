@@ -25,34 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
                   .to("#left-door", { x: '-100%', duration: 2, ease: 'power3.inOut' })
                   .to("#right-door", { x: '100%', duration: 2, ease: 'power3.inOut' }, "<")
                   .to("#main-content", { opacity: 1, duration: 1.5 }, "-=0.5")
-                  .from("#aamantran > *", { opacity: 0, y: 40, stagger: 0.25, duration: 1.2, ease: 'power2.out' }, "-=1")
-                  .add(() => {
-                    const ganeshaPaths = document.querySelectorAll('.ganesha-icon-container .path');
-                    ganeshaPaths.forEach((path) => {
-                        const length = path.getTotalLength();
-                        path.style.strokeDasharray = length;
-                        path.style.strokeDashoffset = length;
-                    });
-
-                    const drawTl = gsap.timeline({
-                        scrollTrigger: {
-                            trigger: ".ganesha-icon-container",
-                            start: "top 70%",
-                            toggleActions: "play none none none"
-                        }
-                    });
-
-                    drawTl.to(ganeshaPaths, {
-                        strokeDashoffset: 0,
-                        duration: 4,
-                        ease: "power2.inOut",
-                        stagger: 0.3
-                    }).to(ganeshaPaths, {
-                        fill: "#d4af37",
-                        duration: 1.5,
-                        ease: "sine.inOut"
-                    }, "-=1");
-                });
+                  .from("#aamantran > *", { opacity: 0, y: 40, stagger: 0.25, duration: 1.2, ease: 'power2.out' }, "-=1");
             });
 
             // Scroll Prompt Animation
