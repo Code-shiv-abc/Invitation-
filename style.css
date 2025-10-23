@@ -68,8 +68,26 @@ body {
             perspective: 1000px;
         }
         .gallery-item {
+            position: relative; /* Needed for absolute positioning of the caption */
+            overflow: hidden; /* Hide caption overflow */
             transition: transform 0.5s ease-out, box-shadow 0.5s ease-out;
             box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        .caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(74, 0, 30, 0.85); /* Semi-transparent maroon */
+            color: #d4af37; /* Gold text */
+            padding: 1rem;
+            transform: translateY(100%);
+            transition: transform 0.5s ease-in-out;
+            text-align: center;
+            font-size: 1.1rem;
+        }
+        .gallery-item:hover .caption {
+            transform: translateY(0);
         }
         .gallery-item:hover {
             box-shadow: 0 15px 40px rgba(0,0,0,0.5);
