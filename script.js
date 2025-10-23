@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-            gsap.registerPlugin(ScrollTrigger, Draggable, InertiaPlugin, MotionPathPlugin);
+            gsap.registerPlugin(ScrollTrigger, MotionPathPlugin);
 
             // Butterfly scroll animation
             const butterfly = document.getElementById('butterfly');
@@ -37,7 +37,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     ease: "power1.inOut"
                 });
             }
-
 
             // Phase 1: Loader
             window.addEventListener('load', () => {
@@ -80,144 +79,127 @@ document.addEventListener('DOMContentLoaded', () => {
             // Phase 4: Card Hover
             // This is handled by CSS :hover pseudo-class for simplicity.
 
-            // Phase 5: Interactive "Snap-to-Center" Gallery
-            gsap.registerPlugin(Draggable, InertiaPlugin);
-
+            // Phase 5: Parallax Gallery & Scroll Animation
             const galleryContainer = document.querySelector(".horizontal-scroll-container");
             const galleryItems = gsap.utils.toArray(".gallery-item");
-            const galleryWidth = galleryContainer.offsetWidth;
-            const itemWidth = galleryItems[0].offsetWidth;
-            const totalWidth = itemWidth * galleryItems.length;
 
-            // Set the container to the total width of all items
-            gsap.set(galleryContainer, { width: totalWidth });
-
-            function centerImage(index) {
-                gsap.to(galleryContainer, {
-                    x: -index * itemWidth + (galleryWidth - itemWidth) / 2,
-                    duration: 0.8,
-                    ease: 'power3.inOut'
+            galleryItems.forEach(item => {
+                // Initial state for scroll-in view
+                gsap.from(item, {
+                    opacity: 0,
+                    scale: 0.95,
+                    y: 30,
+                    ease: 'power2.out',
+                    scrollTrigger: {
+                        trigger: item,
+                        scroller: galleryContainer,
+                        horizontal: true,
+                        start: 'left 95%',
+                        toggleActions: 'play none none none',
+                    }
                 });
 
-                // Add active state to the centered image
-                galleryItems.forEach((item, i) => {
+                // Parallax for background
+                gsap.to(item, {
+                    backgroundPosition: "50% -50px",
+                    ease: "none",
+                    scrollTrigger: {
+                        trigger: item,
+                        scroller: galleryContainer,
+                        horizontal: true,
+                        start: "left right",
+                        end: "right left",
+                        scrub: true
+                    }
+                });
+
+                // 3D Tilt Effect on Hover
+                item.addEventListener('mousemove', (e) => {
+                    const { left, top, width, height } = item.getBoundingClientRect();
+                    const x = e.clientX - left;
+                    const y = e.clientY - top;
+                    const rotateX = gsap.utils.mapRange(0, height, -15, 15)(y);
+                    const rotateY = gsap.utils.mapRange(0, width, 15, -15)(x);
+
                     gsap.to(item, {
-                        scale: i === index ? 1.05 : 0.95,
-                        filter: i === index ? 'brightness(1.1)' : 'brightness(0.8)',
-                        duration: 0.5,
-                        ease: 'power2.out'
+                        rotationX: rotateX,
+                        rotationY: rotateY,
+                        transformPerspective: 1000,
+                        ease: 'power1.out',
+                        duration: 0.5
                     });
                 });
-            }
 
-            Draggable.create(galleryContainer, {
-                type: "x",
-                bounds: {
-                    minX: -(totalWidth - galleryWidth),
-                    maxX: 0
-                },
-                inertia: true,
-                snap: {
-                    x: function(endValue) {
-                        // Snap to the center of the closest image
-                        return Math.round(endValue / itemWidth) * itemWidth;
-                    }
-                },
-                onDragEnd: function() {
-                    let currentIndex = Math.round(this.x / -itemWidth);
-                    centerImage(currentIndex);
-                }
+                item.addEventListener('mouseleave', () => {
+                    gsap.to(item, {
+                        rotationX: 0,
+                        rotationY: 0,
+                        ease: 'elastic.out(1, 0.5)',
+                        duration: 1
+                    });
+                });
             });
 
-            // Initially center the first image
-            centerImage(0);
-
-            // Choreographed Scroll-Triggered Animations for a Cinematic Feel
+            // Choreographed Scroll-Triggered Animations
             const sections = document.querySelectorAll('section');
 
             sections.forEach((section, i) => {
-                if (i === 0) return; // Skip the first section (Aamantran)
+                if (i === 0) return; // Skip the first section (Aamantran) as it's handled by the curtain opening
 
                 const timeline = gsap.timeline({
                     scrollTrigger: {
                         trigger: section,
-                        start: 'top 85%', // Start a bit earlier
-                        end: 'bottom 40%',
-                        toggleActions: 'play none none reverse' // Reverse animation on scroll up
+                        start: 'top 80%',
+                        toggleActions: 'play none none none'
                     }
                 });
 
                 const sectionTitle = section.querySelector('h2');
+                const sectionContent = section.querySelectorAll('*:not(h2):not(.ornate-divider)');
 
                 if (sectionTitle) {
-                    // Animate title with a more refined effect
                     timeline.from(sectionTitle, {
                         opacity: 0,
-                        y: 50,
-                        skewY: 5,
-                        duration: 1.5,
-                        ease: 'power4.out'
+                        y: 40, // Reduced y offset for subtlety
+                        duration: 1.2,
+                        ease: 'power3.out'
                     });
                 }
 
-                const ornateDivider = section.previousElementSibling;
-                if (ornateDivider && ornateDivider.classList.contains('ornate-divider')) {
-                     timeline.from(ornateDivider, {
-                        opacity: 0,
-                        width: "20%",
-                        duration: 1.5,
-                        ease: 'power4.out'
-                    }, "-=1.2");
-                }
-
-
                 if (section.id === 'utsav') {
                     const cards = section.querySelectorAll('.card-3d');
-                    // Staggered card animation, like they are being dealt
                     timeline.from(cards, {
                         opacity: 0,
-                        y: 60,
-                        rotationX: -10,
-                        rotationY: 20,
-                        scale: 0.9,
-                        duration: 1.2,
-                        stagger: {
-                            each: 0.2,
-                            from: "start"
-                        },
-                        ease: 'power4.out'
-                    }, "-=1"); // Overlap with title animation
+                        y: 40,
+                        scale: 0.95,
+                        rotationY: -20,
+                        duration: 1,
+                        stagger: 0.2,
+                        ease: 'power3.out'
+                    }, "-=0.8");
                 } else if (section.id === 'venue') {
                     const paragraph = section.querySelector('p');
                     const map = section.querySelector('iframe');
-                    // Animate paragraph and map with different directions
-                    timeline.from(paragraph, { opacity: 0, x: -50, duration: 1.2, ease: 'power4.out' }, "-=1")
-                            .from(map, { opacity: 0, scale: 0.8, duration: 1.5, ease: 'elastic.out(1, 0.75)' }, "-=0.9");
+                    timeline.from(paragraph, { opacity: 0, y: 30, duration: 1, ease: 'power3.out' }, "-=0.8")
+                            .from(map, { opacity: 0, scale: 0.95, duration: 1.2, ease: 'power3.out' }, "-=0.6");
                 } else if (section.id === 'prem-gatha') {
-                    // Title is handled above. Gallery has its own logic.
+                    // The gallery items have their own scroll trigger, so we just animate the title.
+                    // The main title animation is already handled.
                 } else if (section.id === 'aashirwad') {
-                    const blessingTitle = section.querySelector('.mb-12 h3');
-                    const blessingTextarea = section.querySelector('textarea');
-                    const blessingButton = section.querySelector('#submit-blessing');
-                    const rsvpTitle = section.querySelector('div:not(.mb-12) h3');
-                    const rsvpButtons = section.querySelectorAll('.rsvp-button');
-
-                    // Animate blessings and RSVP sections with more detail
-                    timeline.from([blessingTitle, blessingTextarea, blessingButton], {
-                        opacity: 0,
-                        y: 30,
-                        stagger: 0.2,
-                        duration: 1,
-                        ease: 'power3.out'
-                    }, "-=1")
-                    .from(rsvpTitle, { opacity: 0, y:30, duration: 1, ease: 'power3.out'}, "-=0.5")
-                    .from(rsvpButtons, {
-                        opacity: 0,
-                        scale: 0.5,
-                        stagger: 0.2,
-                        duration: 0.8,
-                        ease: 'back.out(1.7)'
-                    }, "-=0.7");
+                    const blessingBox = section.querySelector('.mb-12');
+                    const rsvpBox = section.querySelector('div:not(.mb-12)');
+                     timeline.from(blessingBox, { opacity: 0, y: 40, duration: 1.2, ease: 'power3.out' }, "-=0.8")
+                             .from(rsvpBox, { opacity: 0, y: 40, duration: 1.2, ease: 'power3.out' }, "-=0.9");
+                } else {
+                     if (sectionContent.length > 0) {
+                        timeline.from(sectionContent, {
+                            opacity: 0,
+                            y: 30,
+                            stagger: 0.2,
+                            duration: 1,
+                            ease: 'power3.out'
+                        }, "-=0.8");
+                    }
                 }
             });
 
@@ -268,26 +250,28 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // --- Micro-interactions and Visual Polish ---
 
-            // 1. Enhanced Button Hovers with Lift and Press effect
+            // 1. Enhanced Button Hovers
             const interactiveButtons = document.querySelectorAll('button, .venue-icon-link');
             interactiveButtons.forEach(button => {
                 const tl = gsap.timeline({ paused: true });
                 tl.to(button, {
-                    y: -3,
-                    scale: 1.05,
-                    boxShadow: "0 8px 15px rgba(212, 175, 55, 0.3)",
+                    y: -5, // Increased lift
+                    scale: 1.08,
+                    boxShadow: "0 12px 25px rgba(212, 175, 55, 0.4)", // Enhanced shadow
                     duration: 0.3,
                     ease: 'power2.out'
                 });
 
                 button.addEventListener('mouseenter', () => tl.play());
-                button.addEventListener('mouseleave', () => tl.reverse());
+                button.addEventListener('mouseleave', () => {
+                    tl.reverse();
+                });
 
                 button.addEventListener('mousedown', () => {
-                    gsap.to(button, { scale: 0.95, y: 0, duration: 0.15, ease: 'power2.in' });
+                    gsap.to(button, { scale: 0.98, y: -2, duration: 0.15, ease: 'power2.in' }); // Press down effect
                 });
                 button.addEventListener('mouseup', () => {
-                    gsap.to(button, { scale: 1.05, y: -3, duration: 0.2, ease: 'power2.out' });
+                    gsap.to(button, { scale: 1.08, y: -5, duration: 0.2, ease: 'power2.out' }); // Release effect
                 });
             });
 
@@ -304,38 +288,25 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Load from localStorage
             const savedBlessings = JSON.parse(localStorage.getItem('weddingBlessings')) || [];
-            savedBlessings.forEach(b => displayBlessing(b.text, b.date, false));
+            savedBlessings.forEach(b => displayBlessing(b.text, b.date));
 
             const savedRSVP = localStorage.getItem('weddingRSVP');
             if(savedRSVP) {
                 updateRSVPUI(savedRSVP);
             }
 
-            function displayBlessing(text, date, animate = false) {
+            function displayBlessing(text, date) {
                 const blessingEl = document.createElement('div');
                 blessingEl.className = 'bg-maroon p-4 rounded-lg border border-gold border-opacity-30';
                 blessingEl.innerHTML = `<p>"${text}"</p><small class="text-gray-400">${date}</small>`;
-
-                // Add to the top of the list
                 blessingsDisplay.prepend(blessingEl);
-
-                // Animate the new blessing
-                if (animate) {
-                    gsap.from(blessingEl, {
-                        opacity: 0,
-                        y: -50,
-                        duration: 1,
-                        ease: 'power4.out'
-                    });
-                }
             }
 
             submitBlessing.addEventListener('click', () => {
                 const text = blessingText.value.trim();
                 if (text) {
                     const date = new Date().toLocaleString();
-                    // Pass true to animate the new blessing
-                    displayBlessing(text, date, true);
+                    displayBlessing(text, date);
 
                     const currentBlessings = JSON.parse(localStorage.getItem('weddingBlessings')) || [];
                     currentBlessings.push({ text, date });
@@ -388,23 +359,6 @@ document.addEventListener('DOMContentLoaded', () => {
                         }
                     });
                 });
-            });
-
-            // Ambient Music Player
-            const music = document.getElementById('ambient-music');
-            const musicToggle = document.getElementById('music-toggle');
-            const musicIcon = musicToggle.querySelector('i');
-
-            musicToggle.addEventListener('click', () => {
-                if (music.paused) {
-                    music.play();
-                    musicIcon.classList.remove('fa-volume-mute');
-                    musicIcon.classList.add('fa-volume-up');
-                } else {
-                    music.pause();
-                    musicIcon.classList.remove('fa-volume-up');
-                    musicIcon.classList.add('fa-volume-mute');
-                }
             });
 
             // Initialize Particles.js
