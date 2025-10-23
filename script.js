@@ -1,5 +1,43 @@
 document.addEventListener('DOMContentLoaded', () => {
-            gsap.registerPlugin(ScrollTrigger);
+            gsap.registerPlugin(ScrollTrigger, Draggable, InertiaPlugin, MotionPathPlugin);
+
+            // Butterfly scroll animation
+            const butterfly = document.getElementById('butterfly');
+            if (butterfly) {
+                const body = document.body;
+                const html = document.documentElement;
+                // Ensure we get the full document height
+                const docHeight = Math.max(body.scrollHeight, body.offsetHeight, html.clientHeight, html.scrollHeight, html.offsetHeight);
+
+                // Create a dynamic weaving path
+                const path = [
+                    { x: 50, y: 0 },
+                    { x: window.innerWidth * 0.8, y: docHeight * 0.25 },
+                    { x: window.innerWidth * 0.2, y: docHeight * 0.50 },
+                    { x: window.innerWidth * 0.7, y: docHeight * 0.75 },
+                    { x: window.innerWidth * 0.5, y: docHeight - 100 } // End near the bottom center
+                ];
+
+                const butterflyTl = gsap.timeline({
+                    scrollTrigger: {
+                        trigger: document.body,
+                        start: "top top",
+                        end: "bottom bottom",
+                        scrub: 1.5, // Smooth scrubbing effect
+                    }
+                });
+
+                butterflyTl.to(butterfly, {
+                    motionPath: {
+                        path: path,
+                        align: "self",
+                        autoRotate: true,
+                        alignOrigin: [0.5, 0.5]
+                    },
+                    ease: "power1.inOut"
+                });
+            }
+
 
             // Phase 1: Loader
             window.addEventListener('load', () => {
