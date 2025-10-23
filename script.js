@@ -1,6 +1,32 @@
 document.addEventListener('DOMContentLoaded', () => {
             gsap.registerPlugin(ScrollTrigger, MotionPathPlugin);
 
+            // --- Dynamic Event Details ---
+            const festivitiesContainer = document.querySelector('#utsav .grid');
+            const events = [
+                { name: 'Haldi', date: 'Monday, 20th Nov 2025', time: '10:00 AM onwards', bgColor: 'bg-saffron', calendar: { title: 'Raj & Priya - Haldi Ceremony', date: '2025-11-20T10:00:00', duration: 120 } },
+                { name: 'Mehendi', date: 'Monday, 20th Nov 2025', time: '06:00 PM onwards', bgColor: 'bg-emerald', calendar: { title: 'Raj & Priya - Mehendi Ceremony', date: '2025-11-20T18:00:00', duration: 180 } },
+                { name: 'Sangeet', date: 'Tuesday, 21st Nov 2025', time: '07:00 PM onwards', bgColor: 'bg-blue-500', calendar: { title: 'Raj & Priya - Sangeet Ceremony', date: '2025-11-21T19:00:00', duration: 240 } },
+                { name: 'Wedding', date: 'Wednesday, 22nd Nov 2025', time: '05:00 PM onwards', bgColor: 'bg-red-500', calendar: { title: 'Raj & Priya - Wedding Ceremony', date: '2025-11-22T17:00:00', duration: 300 } },
+                { name: 'Reception', date: 'Wednesday, 22nd Nov 2025', time: '08:00 PM onwards', bgColor: 'bg-purple-500', calendar: { title: 'Raj & Priya - Reception', date: '2025-11-22T20:00:00', duration: 240 } }
+            ];
+
+            if (festivitiesContainer) {
+                festivitiesContainer.innerHTML = ''; // Clear existing static content
+                events.forEach(event => {
+                    const eventCard = `
+                        <div class="card-3d ${event.bgColor} bg-opacity-20 border border-gold p-6 rounded-lg text-center">
+                            <h3 class="text-3xl text-gold mb-2 font-calligraphy">${event.name}</h3>
+                            <p class="text-lg">${event.date}</p>
+                            <p>${event.time}</p>
+                            <button class="add-to-calendar-btn mt-4 bg-gold text-maroon px-4 py-2 rounded-full text-sm" data-event='${JSON.stringify(event.calendar)}'>Add to Calendar</button>
+                        </div>
+                    `;
+                    festivitiesContainer.innerHTML += eventCard;
+                });
+            }
+
+
             // Butterfly scroll animation
             const butterfly = document.getElementById('butterfly');
             if (butterfly) {
