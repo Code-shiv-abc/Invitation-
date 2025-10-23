@@ -65,7 +65,7 @@ body {
             background: #e6c300;
         }
         #prem-gatha {
-            /* perspective property removed as it's not needed for the new gallery */
+            perspective: 1000px;
         }
         .gallery-item {
             transition: transform 0.5s ease-out, box-shadow 0.5s ease-out;
@@ -73,6 +73,12 @@ body {
         }
         .gallery-item:hover {
             box-shadow: 0 15px 40px rgba(0,0,0,0.5);
+        }
+        .parallax-bg {
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
         }
         .gold-text {
             /* New Antique Gold Gradient */
@@ -216,13 +222,4 @@ body {
 #aamantran {
     justify-content: flex-start; /* Aligns content to the top */
     padding-top: 5rem; /* Pushes the content down from the top edge */
-}
-
-#music-toggle {
-    transition: transform 0.3s, text-shadow 0.3s;
-}
-
-#music-toggle:hover {
-    transform: scale(1.1);
-    text-shadow: 0 0 10px rgba(212, 175, 55, 0.7);
 }
