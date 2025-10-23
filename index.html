@@ -36,24 +36,27 @@
     <!-- Particle.js Container -->
     <div id="particles-js"></div>
 
-    <!-- Phase 1: Loader -->
-    <div id="loader" class="fixed inset-0 bg-maroon z-50 flex items-center justify-center">
-        <div class="mandala-loader">
-            <div class="mandala-ring"></div>
-            <div class="mandala-ring"></div>
-            <div class="mandala-ring"></div>
-            <div class="mandala-ring"></div>
+    <!-- Phases 1 & 2: Loader and Unveiling -->
+    <div id="curtain" class="fixed inset-0 z-50 flex items-center justify-center">
+        <!-- The loader is now on top, visible first -->
+        <div id="loader" class="absolute inset-0 flex items-center justify-center z-30 bg-maroon">
+            <div class="mandala-loader">
+                <div class="mandala-ring"></div>
+                <div class="mandala-ring"></div>
+                <div class="mandala-ring"></div>
+                <div class="mandala-ring"></div>
+            </div>
         </div>
-    </div>
 
-    <!-- Phase 2: Unveiling -->
-    <div id="curtain" class="fixed inset-0 z-40 flex">
-        <div id="left-door" class="w-1/2 h-full bg-maroon border-r-2 border-gold flex items-center justify-end">
+        <!-- The doors are behind the loader, waiting to be revealed -->
+        <div id="left-door" class="w-1/2 h-full bg-maroon border-r-2 border-gold flex items-center justify-end z-20">
              <div class="text-gold text-4xl font-bold -mr-8 font-calligraphy">S&P</div>
         </div>
-        <div id="right-door" class="w-1/2 h-full bg-maroon border-l-2 border-gold flex items-center justify-start">
+        <div id="right-door" class="w-1/2 h-full bg-maroon border-l-2 border-gold flex items-center justify-start z-20">
         </div>
-        <button id="open-invitation" class="absolute bottom-10 left-1/2 -translate-x-1/2 bg-gold text-maroon px-8 py-3 rounded-lg border-2 border-gold-dark font-bold text-lg hover:bg-opacity-90 transition-all shadow-lg">
+
+        <!-- The button appears over the loader -->
+        <button id="open-invitation" class="absolute bottom-10 left-1/2 -translate-x-1/2 bg-gold text-maroon px-8 py-3 rounded-lg border-2 border-gold-dark font-bold text-lg hover:bg-opacity-90 transition-all shadow-lg z-40">
             Unveil the Celebration
         </button>
     </div>

@@ -39,31 +39,70 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
 
-            // Phase 1: Loader
+            // Phases 1 & 2: Dazzling Loader and Professional Unveil
+            const openButton = document.getElementById('open-invitation');
+            const curtain = document.getElementById('curtain');
+            const loader = document.getElementById('loader');
+
+            // We will hide the button initially and show it after a brief moment
+            // to build anticipation and ensure the loader animation is seen.
+            gsap.set(openButton, { opacity: 0, y: 20 });
+
             window.addEventListener('load', () => {
-                gsap.to("#loader", {
-                    opacity: 0,
+                // Once the window is loaded, fade in the "Unveil" button
+                gsap.to(openButton, {
+                    opacity: 1,
+                    y: 0,
                     duration: 1,
-                    onComplete: () => {
-                        document.getElementById('loader').style.display = 'none';
-                    }
+                    ease: 'power2.out',
+                    delay: 1 // A little delay to let the Mandala animate
                 });
             });
 
-            // Phase 2: Unveiling
-            const openButton = document.getElementById('open-invitation');
             openButton.addEventListener('click', () => {
                 const tl = gsap.timeline({
                     onComplete: () => {
-                        // Hide the curtain after animation to allow clicks
-                        document.getElementById('curtain').style.display = 'none';
+                        // Completely hide the curtain after the animation
+                        curtain.style.display = 'none';
                     }
                 });
-                tl.to("#open-invitation", { opacity: 0, duration: 0.5, y: 30, ease: 'power2.in' })
-                  .to("#left-door", { x: '-100%', duration: 2, ease: 'power3.inOut' })
-                  .to("#right-door", { x: '100%', duration: 2, ease: 'power3.inOut' }, "<")
-                  .to("#main-content", { opacity: 1, duration: 1.5 }, "-=0.5")
-                  .from("#aamantran > *", { opacity: 0, y: 40, stagger: 0.25, duration: 1.2, ease: 'power2.out' }, "-=1");
+
+                tl
+                    // 1. Fade out the loader and the button together for a clean start
+                    .to([loader, openButton], {
+                        opacity: 0,
+                        duration: 0.75,
+                        ease: 'power2.in',
+                        onComplete: () => {
+                            // Hide the loader so the doors behind it are revealed
+                            loader.style.display = 'none';
+                        }
+                    })
+                    // 2. Animate the doors opening with a powerful, smooth ease
+                    .to("#left-door", {
+                        x: '-100%',
+                        duration: 1.5, // Quicker, more dazzling
+                        ease: 'power3.inOut'
+                    }, ">") // Ensures this animation starts after the previous one completes
+                    .to("#right-door", {
+                        x: '100%',
+                        duration: 1.5, // Quicker, more dazzling
+                        ease: 'power3.inOut'
+                    }, "<") // Start at the same time as the left door
+                    // 3. Fade in the main content as the doors are opening
+                    .to("#main-content", {
+                        opacity: 1,
+                        duration: 1,
+                        ease: 'power2.out'
+                    }, "-=1") // Start while doors are still moving
+                    // 4. Animate in the first section's content for a grand reveal
+                    .from("#aamantran > *", {
+                        opacity: 0,
+                        y: 50,
+                        stagger: 0.2,
+                        duration: 1.2,
+                        ease: 'power3.out'
+                    }, "-=0.5");
             });
 
             // Scroll Prompt Animation
