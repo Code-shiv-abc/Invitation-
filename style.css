@@ -143,25 +143,6 @@ body {
             background-color: #fdf6e8; /* A color sampled from the new background */
             padding: 0 15px;
         }
-        .ganesha-icon-container {
-            animation: pulse-glow 3s infinite alternate;
-        }
-        .ganesha-icon-container img {
-            filter: drop-shadow(3px 3px 5px rgba(0,0,0,0.5));
-            border-radius: 50%; /* Optional: if you want a circular frame for the image */
-            background-color: rgba(255, 255, 255, 0.7); /* Add a subtle white glow */
-            border: 2px solid #d4af37;
-        }
-        @keyframes pulse-glow {
-            from {
-                transform: scale(1);
-                filter: drop-shadow(3px 3px 2px rgba(0,0,0,0.3));
-            }
-            to {
-                transform: scale(1.05);
-                filter: drop-shadow(3px 3px 8px rgba(212, 175, 55, 0.7));
-            }
-        }
         #scroll-prompt {
             animation: bounce 2s infinite;
         }
@@ -240,4 +221,5 @@ body {
 #aamantran {
     justify-content: flex-start; /* Aligns content to the top */
     padding-top: 5rem; /* Pushes the content down from the top edge */
+    background-color: #4a001e;
 }
